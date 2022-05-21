@@ -47,7 +47,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: FormTabs(),
+      body: Container(
+        child: FormTabs(
+          myTabs: <TabInfo>[
+            TabInfo(
+                tabLabel: Tab(text: "Forms"),
+                content: Text("This is where form content appears")),
+            TabInfo(tabLabel: Tab(text: "Calendar"), content: Calendar()),
+          ],
+        ),
+      ),
     );
   }
 }
