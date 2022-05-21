@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/calendar.dart';
+import 'package:mockup/components/tabs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,9 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Calendar(),
-      ),
+      body: FormTabs(),
     );
   }
 }
