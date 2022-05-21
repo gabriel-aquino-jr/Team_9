@@ -20,8 +20,8 @@ class TabInfo {
   });
 }
 
-class FormTabs extends StatelessWidget {
-  const FormTabs({Key? key, required this.myTabs}) : super(key: key);
+class Tabs extends StatelessWidget {
+  const Tabs({Key? key, required this.myTabs}) : super(key: key);
 
   final List<TabInfo> myTabs;
 

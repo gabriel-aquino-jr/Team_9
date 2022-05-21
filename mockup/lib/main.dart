@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        child: FormTabs(
+        child: Tabs(
           myTabs: <TabInfo>[
             TabInfo(
                 tabLabel: Tab(text: "Forms"),
