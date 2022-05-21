@@ -38,6 +38,7 @@ class Tabs extends StatelessWidget {
             // Tab bar displays the navigation for the tabs. The index of tabbar will be used in the TabBarView.
             child: TabBar(
               // This function retrives the tab label from myTabs.
+              isScrollable: true,
               tabs: myTabs.map((TabInfo label) {
                 return Center(child: label.tabLabel);
               }).toList(),
