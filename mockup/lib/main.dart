@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mockup/components/calendar.dart';
 import 'package:mockup/components/tabs.dart';
 import 'package:mockup/pages/home.dart';
+import 'package:mockup/pages/my_appointments.dart';
+import 'package:mockup/pages/new_appointment.dart';
 
 void main() {
   runApp(const MyApp());
@@ -112,7 +114,7 @@ class _LoginDemoState extends State<LoginDemo> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => const HomePage(
+                          builder: (_) => const MyAppointments(
                                 title: 'Welcome',
                               )));
                 },
