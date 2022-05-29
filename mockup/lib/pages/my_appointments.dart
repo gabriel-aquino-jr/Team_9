@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:mockup/components/NavBtn.dart';
+import 'package:mockup/pages/new_appointment.dart';
 
 /*
 void main() {
@@ -8,7 +10,7 @@ void main() {
 */
 class MyAppointments extends StatefulWidget {
   const MyAppointments({Key? key, required this.title}) : super(key: key);
-
+  static String route = 'MyAppointments';
   final String title;
 
   @override
@@ -30,26 +32,29 @@ class _MyAppointmentsState extends State<MyAppointments> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Your Appointments'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Your Appointments'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            Column(
+              children: [
+                _createDataTable(),
+                NavBtn(label: 'New', route: NewAppointment.route)
+              ],
+            )
+          ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            children: [_createDataTable()],
-          ),
-
-/*          ElevatedButton(
-                  onPressed,
-                  child: const Text(
-                    'Insert',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-                */
-        ),
+        // ElevatedButton(
+        //         onPressed,
+        //         child: const Text(
+        //           'Insert',
+        //           style: TextStyle(fontSize: 20),
+        //         ),
+        //       ),
       ),
     );
   }

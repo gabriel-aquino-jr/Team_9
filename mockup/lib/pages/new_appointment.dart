@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
 
 class NewAppointment extends StatefulWidget {
   final title;
+  static String route = 'NewAppointment';
 
   const NewAppointment({Key? key, required this.title}) : super(key: key);
 
