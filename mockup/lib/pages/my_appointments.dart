@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
-import 'package:mockup/components/NavBtn.dart';
+import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/pages/new_appointment.dart';
 
 /*

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mockup/pages/create_account.dart';
+import 'package:mockup/pages/forgot_password.dart';
 import 'package:mockup/pages/login.dart';
 import 'package:mockup/pages/my_appointments.dart';
 import 'package:mockup/pages/new_appointment.dart';
@@ -15,17 +17,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      initialRoute: '/',
+      initialRoute: LoginDemo.route,
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => LoginDemo(),
+        LoginDemo.route: (context) => LoginDemo(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         MyAppointments.route: (context) => const MyAppointments(
               title: 'Welcome <userName>',
             ),
-        NewAppointment.route: (context) => NewAppointment(
+        NewAppointment.route: (context) => const NewAppointment(
               title: 'New Appointment',
             ),
+        forgot_password.route: (context) => const forgot_password(),
+        create_account.route: (context) => const create_account()
         // home: LoginDemo(), // This doesn't work with Routes
       },
       theme: ThemeData(

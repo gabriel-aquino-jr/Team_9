@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mockup/components/NavBtn.dart';
+import 'package:mockup/components/nav_button.dart';
+import 'package:mockup/pages/create_account.dart';
+import 'package:mockup/pages/forgot_password.dart';
 import 'package:mockup/pages/my_appointments.dart';
 
 class LoginDemo extends StatefulWidget {
+  static String route = "login";
   @override
   _LoginDemoState createState() => _LoginDemoState();
 }
@@ -63,15 +66,10 @@ class _LoginDemoState extends State<LoginDemo> {
                     hintText: 'Enter secure password'),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-              },
-              child: const Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
-            ),
+            NavBtn(
+                btnType: BtnType.text,
+                label: 'Forgot Password',
+                route: forgot_password.route),
             // Container(
             //   height: 50,
             //   width: 250,
@@ -91,11 +89,15 @@ class _LoginDemoState extends State<LoginDemo> {
             //       style: TextStyle(color: Colors.white, fontSize: 25),
             //     ),
             //   ),
-            NavBtn(label: 'login', route: MyAppointments.route),
+            NavBtn(label: 'Login', route: MyAppointments.route),
             const SizedBox(
               height: 130,
             ),
-            const Text('New User? Create Account')
+            NavBtn(
+              btnType: BtnType.text,
+              label: 'New User? Create Account',
+              route: create_account.route,
+            ),
           ],
         ),
       ),
