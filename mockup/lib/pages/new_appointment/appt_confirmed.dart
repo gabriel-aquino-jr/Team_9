@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/pages/login.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
-  static String route = 'forgot_password';
+import '../../components/nav_button.dart';
+
+class AppointmentConfirmed extends StatelessWidget {
+  const AppointmentConfirmed({Key? key}) : super(key: key);
+  static String route = 'appt_confirmed';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('placeholder'),
+        title: const Text('Road Test'),
       ),
       body: Center(
         child: Column(
           children: [
-            const Text('Forgot Password Placeholder'),
+            const Text('Create Account Placeholder'),
             NavBtn(
               label: 'Back',
               route: LoginDemo.route,

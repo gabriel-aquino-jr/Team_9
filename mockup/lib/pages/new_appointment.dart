@@ -1,126 +1,52 @@
 import 'package:flutter/material.dart';
-// source: https://stackoverflow.com/questions/60027498/flutter-radio-value-not-changing-in-stepper
-/*
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-*/
+import 'package:mockup/components/tabs.dart';
+import 'package:mockup/pages/new_appointment/appt_city.dart';
+import 'package:mockup/pages/new_appointment/appt_date.dart';
+import 'package:mockup/pages/new_appointment/appt_review.dart';
+import 'package:mockup/pages/new_appointment/appt_time.dart';
+import 'package:mockup/pages/new_appointment/appt_type.dart';
 
 class NewAppointment extends StatefulWidget {
   final title;
-  static String route = 'NewAppointment';
+  static String route = 'New Road Test';
 
   const NewAppointment({Key? key, required this.title}) : super(key: key);
-
-  //HomePage({this.title});
 
   @override
   _NewAppointmentState createState() => _NewAppointmentState();
 }
 
 class _NewAppointmentState extends State<NewAppointment> {
-  List<Step> get _steps => <Step>[_lastQualificationStep()];
-  int _currentStep = 0;
-  bool _isStepsCompleted = false;
-
-  @override
-  void initState() {
-    super.initState();
-    //_steps.add(_lastQualificationStep());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Stack(
-        children: <Widget>[
-          Stepper(
-            steps: _steps,
-            currentStep: _currentStep,
-            onStepTapped: (step) => onStepTapped(step),
-            onStepContinue: onStepContinue,
-            onStepCancel: onStepCancel,
+      body: Tabs(
+        myTabs: <TabInfo>[
+          TabInfo(
+            tabLabel: const Tab(text: 'Type'),
+            content: const AppointmentType(),
+          ),
+          TabInfo(
+            tabLabel: const Tab(text: 'City'),
+            content: AppontmentCity(),
+          ),
+          TabInfo(
+            tabLabel: const Tab(text: 'Date'),
+            content: AppontmentDate(),
+          ),
+          TabInfo(
+            tabLabel: const Tab(text: 'Time'),
+            content: AppontmentTime(),
+          ),
+          TabInfo(
+            tabLabel: Tab(text: 'Review'),
+            content: AppontmentReview(),
           ),
         ],
       ),
     );
   }
-
-  void onStepContinue() {
-    _currentStep + 1 != _steps.length
-        ? onStepTapped(_currentStep + 1)
-        : setState(() => _isStepsCompleted = true);
-  }
-
-  void onStepTapped(int step) => setState(() => _currentStep = step);
-
-  void onStepCancel() {
-    if (_currentStep > 0) {
-      onStepTapped(_currentStep - 1);
-    }
-  }
-
-  void setSelectRadioButton(int value, int groupValue) {
-    print('Radio Value: $value');
-    print('GroupValue before setState: $groupValue');
-    setState(() {
-      _qualificationRadioGroupValue = value;
-    });
-    print('GroupValue after setState: $groupValue');
-  }
-
-  int _qualificationRadioGroupValue = 0;
-
-  Step _lastQualificationStep() {
-    List<RadioModel> qualifitcationList = [
-      RadioModel(
-          title: 'Written test',
-          value: 0,
-          groupValue: _qualificationRadioGroupValue),
-      RadioModel(
-          title: 'Road test',
-          value: 1,
-          groupValue: _qualificationRadioGroupValue),
-    ];
-    return Step(
-      title: const Text('Select your appointment type'),
-      isActive: _currentStep == 0,
-      state: _currentStep == 0 ? StepState.editing : StepState.indexed,
-      content: Column(
-        children: qualifitcationList
-            .map(
-              (qualification) => RadioListTile<dynamic>(
-                title: Text(qualification.title),
-                value: qualification.value,
-                groupValue: _qualificationRadioGroupValue,
-                onChanged: (value) => setSelectRadioButton(
-                    int.parse(value.toString()), qualification.groupValue),
-              ),
-            )
-            .toList(),
-      ),
-    );
-  }
-}
-
-class RadioModel {
-  final title;
-  final value;
-  final groupValue;
-
-  RadioModel({this.title, this.value, this.groupValue});
 }

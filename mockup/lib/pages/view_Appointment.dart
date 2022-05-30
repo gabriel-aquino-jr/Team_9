@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/nav_button.dart';
-import 'package:mockup/pages/login.dart';
+import 'package:mockup/pages/my_appointments.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
-  static String route = 'forgot_password';
+class ViewAppointments extends StatelessWidget {
+  const ViewAppointments({Key? key}) : super(key: key);
+  static String route = 'view_appointments';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('placeholder'),
+        title: const Text('Appointment Details'),
       ),
       body: Center(
         child: Column(
           children: [
-            const Text('Forgot Password Placeholder'),
+            const Text('View Appointments Placeholder'),
             NavBtn(
               label: 'Back',
-              route: LoginDemo.route,
+              route: MyAppointments.route,
             ),
           ],
         ),

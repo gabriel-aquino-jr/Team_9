@@ -30,31 +30,31 @@ class Tabs extends StatelessWidget {
     // Tab controller controls tabs. the length must match the current tabs.
     return DefaultTabController(
       length: myTabs.length,
-      child: Container(
-        padding: EdgeInsets.all(5.0),
-        child: Column(children: <Widget>[
-          Container(
-            color: Colors.blue,
-            // Tab bar displays the navigation for the tabs. The index of tabbar will be used in the TabBarView.
-            child: TabBar(
-              // This function retrives the tab label from myTabs.
-              isScrollable: true,
-              tabs: myTabs.map((TabInfo label) {
-                return Center(child: label.tabLabel);
-              }).toList(),
-            ),
-          ),
-          // Flexible is required here so elements do not get an infinite width in the column.
-          Flexible(
-              // TabBarView displays the content of the currently selected tab by index.
-              child: TabBarView(
-            // This function retrives the tab centent from myTabs. The index is protected by the List structure.
-            children: myTabs.map((TabInfo content) {
-              return content.content;
+      child: Column(children: <Widget>[
+        Container(
+          color: Colors.blue,
+          // Tab bar displays the navigation for the tabs. The index of tabbar will be used in the TabBarView.
+          child: TabBar(
+            // This function retrives the tab label from myTabs.
+            labelPadding: EdgeInsets.symmetric(
+                horizontal:
+                    MediaQuery.of(context).size.width / myTabs.length / 1.25),
+            isScrollable: true,
+            tabs: myTabs.map((TabInfo label) {
+              return Center(child: label.tabLabel);
             }).toList(),
-          )),
-        ]),
-      ),
+          ),
+        ),
+        // Flexible is required here so elements do not get an infinite width in the column.
+        Flexible(
+            // TabBarView displays the content of the currently selected tab by index.
+            child: TabBarView(
+          // This function retrives the tab centent from myTabs. The index is protected by the List structure.
+          children: myTabs.map((TabInfo content) {
+            return content.content;
+          }).toList(),
+        )),
+      ]),
     );
   }
 }

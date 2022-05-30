@@ -69,26 +69,7 @@ class _LoginDemoState extends State<LoginDemo> {
             NavBtn(
                 btnType: BtnType.text,
                 label: 'Forgot Password',
-                route: forgot_password.route),
-            // Container(
-            //   height: 50,
-            //   width: 250,
-            //   decoration: BoxDecoration(
-            //       color: Colors.blue, borderRadius: BorderRadius.circular(20)),
-            //   child: OutlinedButton(
-            //     onPressed: () {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (_) => const MyAppointments(
-            //                     title: 'Welcome',
-            //                   )));
-            //     },
-            //     child: const Text(
-            //       'Login',
-            //       style: TextStyle(color: Colors.white, fontSize: 25),
-            //     ),
-            //   ),
+                route: ForgotPassword.route),
             NavBtn(label: 'Login', route: MyAppointments.route),
             const SizedBox(
               height: 130,
@@ -96,7 +77,7 @@ class _LoginDemoState extends State<LoginDemo> {
             NavBtn(
               btnType: BtnType.text,
               label: 'New User? Create Account',
-              route: create_account.route,
+              route: CreateAccount.route,
             ),
           ],
         ),

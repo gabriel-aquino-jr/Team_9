@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:mockup/pages/home.dart';
-import 'package:mockup/pages/login.dart';
+import 'package:mockup/pages/my_appointments.dart';
 
 import '../components/nav_button.dart';
 
-class create_account extends StatelessWidget {
-  const create_account({Key? key}) : super(key: key);
+class CreateAccount extends StatelessWidget {
+  const CreateAccount({Key? key}) : super(key: key);
   static String route = 'create_account';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('placeholder'),
+      ),
       body: Center(
         child: Column(
           children: [
             const Text('Create Account Placeholder'),
             NavBtn(
-              label: 'Home',
-              route: LoginDemo.route,
+              label: 'Back',
+              route: MyAppointments.route,
             ),
           ],
         ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mockup/pages/new_appointment/appt_confirmed.dart';
 import 'package:mockup/pages/create_account.dart';
 import 'package:mockup/pages/forgot_password.dart';
 import 'package:mockup/pages/login.dart';
 import 'package:mockup/pages/my_appointments.dart';
 import 'package:mockup/pages/new_appointment.dart';
+import 'package:mockup/pages/view_appointment.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,8 +30,10 @@ class MyApp extends StatelessWidget {
         NewAppointment.route: (context) => const NewAppointment(
               title: 'New Appointment',
             ),
-        forgot_password.route: (context) => const forgot_password(),
-        create_account.route: (context) => const create_account()
+        ForgotPassword.route: (context) => const ForgotPassword(),
+        CreateAccount.route: (context) => const CreateAccount(),
+        AppointmentConfirmed.route: (context) => const AppointmentConfirmed(),
+        ViewAppointments.route: ((context) => const ViewAppointments()),
         // home: LoginDemo(), // This doesn't work with Routes
       },
       theme: ThemeData(

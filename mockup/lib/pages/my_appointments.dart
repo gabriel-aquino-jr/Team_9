@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/pages/new_appointment.dart';
+import 'package:mockup/pages/view_Appointment.dart';
 
 /*
 void main() {
@@ -48,13 +49,6 @@ class _MyAppointmentsState extends State<MyAppointments> {
             )
           ],
         ),
-        // ElevatedButton(
-        //         onPressed,
-        //         child: const Text(
-        //           'Insert',
-        //           style: TextStyle(fontSize: 20),
-        //         ),
-        //       ),
       ),
     );
   }
@@ -74,17 +68,21 @@ class _MyAppointmentsState extends State<MyAppointments> {
   List<DataRow> _createRows() {
     return _appointments
         .mapIndexed((index, appointment) => DataRow(
-                cells: [
-                  DataCell(Text(appointment['date'])),
-                  DataCell(Text(appointment['time'])),
-                  DataCell(Text(appointment['type']))
-                ],
-                selected: _selected[index],
-                onSelectChanged: (bool? selected) {
-                  setState(() {
-                    _selected[index] = selected!;
-                  });
-                }))
+              cells: [
+                DataCell(Text(appointment['date'])),
+                DataCell(Text(appointment['time'])),
+                DataCell(Text(appointment['type']))
+              ],
+              selected: _selected[index],
+              onSelectChanged: (bool? selected) {
+                setState(() {
+                  _selected[index] = selected!;
+                });
+              },
+              onLongPress: () {
+                Navigator.pushNamed(context, ViewAppointments.route);
+              },
+            ))
         .toList();
   }
 }
