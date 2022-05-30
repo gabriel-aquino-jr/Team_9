@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mockup/pages/my_appointments.dart';
+import 'package:mockup/components/page_header.dart';
+import 'package:mockup/pages/login.dart';
 
 import '../components/nav_button.dart';
 
@@ -9,17 +10,15 @@ class CreateAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('placeholder'),
-      ),
+    return PageHeader(
+      title: 'Create Account',
       body: Center(
         child: Column(
           children: [
             const Text('Create Account Placeholder'),
             NavBtn(
               label: 'Back',
-              route: MyAppointments.route,
+              route: LoginDemo.route,
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mockup/components/page_header.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/pages/login.dart';
 
@@ -8,10 +9,8 @@ class ForgotPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('placeholder'),
-      ),
+    return PageHeader(
+      title: 'Forgot Password',
       body: Center(
         child: Column(
           children: [

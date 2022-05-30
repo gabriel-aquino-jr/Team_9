@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:mockup/components/nav_button.dart';
+import 'package:mockup/components/page_header.dart';
 import 'package:mockup/pages/new_appointment.dart';
 import 'package:mockup/pages/view_Appointment.dart';
 
@@ -10,9 +11,8 @@ void main() {
 }
 */
 class MyAppointments extends StatefulWidget {
-  const MyAppointments({Key? key, required this.title}) : super(key: key);
+  const MyAppointments({Key? key}) : super(key: key);
   static String route = 'MyAppointments';
-  final String title;
 
   @override
   _MyAppointmentsState createState() => _MyAppointmentsState();
@@ -33,10 +33,8 @@ class _MyAppointmentsState extends State<MyAppointments> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Your Appointments'),
-      ),
+    return PageHeader(
+      title: 'Your Appointments',
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(

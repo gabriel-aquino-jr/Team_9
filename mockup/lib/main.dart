@@ -24,12 +24,8 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/" route, build the FirstScreen widget.
         LoginDemo.route: (context) => LoginDemo(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        MyAppointments.route: (context) => const MyAppointments(
-              title: 'Welcome <userName>',
-            ),
-        NewAppointment.route: (context) => const NewAppointment(
-              title: 'New Appointment',
-            ),
+        MyAppointments.route: (context) => const MyAppointments(),
+        NewAppointment.route: (context) => const NewAppointment(),
         ForgotPassword.route: (context) => const ForgotPassword(),
         CreateAccount.route: (context) => const CreateAccount(),
         AppointmentConfirmed.route: (context) => const AppointmentConfirmed(),

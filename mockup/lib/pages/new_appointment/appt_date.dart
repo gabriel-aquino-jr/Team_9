@@ -7,7 +7,7 @@ class AppontmentDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: <Widget>[
+      children: const <Widget>[
         Text('Choose your date:'),
         Expanded(
             child: SizedBox(

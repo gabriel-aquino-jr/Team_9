@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mockup/components/page_header.dart';
 import 'package:mockup/components/tabs.dart';
 import 'package:mockup/pages/new_appointment/appt_city.dart';
 import 'package:mockup/pages/new_appointment/appt_date.dart';
@@ -7,10 +8,9 @@ import 'package:mockup/pages/new_appointment/appt_time.dart';
 import 'package:mockup/pages/new_appointment/appt_type.dart';
 
 class NewAppointment extends StatefulWidget {
-  final title;
   static String route = 'New Road Test';
 
-  const NewAppointment({Key? key, required this.title}) : super(key: key);
+  const NewAppointment({Key? key}) : super(key: key);
 
   @override
   _NewAppointmentState createState() => _NewAppointmentState();
@@ -19,31 +19,29 @@ class NewAppointment extends StatefulWidget {
 class _NewAppointmentState extends State<NewAppointment> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+    return PageHeader(
+      title: 'New appointment',
       body: Tabs(
-        myTabs: <TabInfo>[
+        children: <TabInfo>[
           TabInfo(
             tabLabel: const Tab(text: 'Type'),
-            content: const AppointmentType(),
+            child: const AppointmentType(),
           ),
           TabInfo(
             tabLabel: const Tab(text: 'City'),
-            content: AppontmentCity(),
+            child: const AppontmentCity(),
           ),
           TabInfo(
             tabLabel: const Tab(text: 'Date'),
-            content: AppontmentDate(),
+            child: const AppontmentDate(),
           ),
           TabInfo(
             tabLabel: const Tab(text: 'Time'),
-            content: AppontmentTime(),
+            child: const AppontmentTime(),
           ),
           TabInfo(
             tabLabel: Tab(text: 'Review'),
-            content: AppontmentReview(),
+            child: const AppontmentReview(),
           ),
         ],
       ),

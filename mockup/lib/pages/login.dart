@@ -15,9 +15,6 @@ class _LoginDemoState extends State<LoginDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text("Login Page"),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

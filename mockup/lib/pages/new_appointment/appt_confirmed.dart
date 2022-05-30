@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mockup/pages/login.dart';
+import 'package:mockup/pages/my_appointments.dart';
 
 import '../../components/nav_button.dart';
 
@@ -19,7 +19,7 @@ class AppointmentConfirmed extends StatelessWidget {
             const Text('Create Account Placeholder'),
             NavBtn(
               label: 'Back',
-              route: LoginDemo.route,
+              route: MyAppointments.route,
             ),
           ],
         ),

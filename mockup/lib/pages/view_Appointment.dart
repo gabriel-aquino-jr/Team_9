@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/nav_button.dart';
+import 'package:mockup/components/page_header.dart';
 import 'package:mockup/pages/my_appointments.dart';
 
 class ViewAppointments extends StatelessWidget {
@@ -8,10 +9,8 @@ class ViewAppointments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Appointment Details'),
-      ),
+    return PageHeader(
+      title: 'Appointment Details',
       body: Center(
         child: Column(
           children: [

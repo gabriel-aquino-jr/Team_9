@@ -12,24 +12,24 @@ import 'package:mockup/components/calendar.dart';
 // Please Note: Because TabBar and TabBarView match together using their index, this class prevents the index from mixing up.
 class TabInfo {
   Widget tabLabel;
-  Widget content;
+  Widget child;
 
   TabInfo({
     required this.tabLabel,
-    required this.content,
+    required this.child,
   });
 }
 
 class Tabs extends StatelessWidget {
-  const Tabs({Key? key, required this.myTabs}) : super(key: key);
+  const Tabs({Key? key, required this.children}) : super(key: key);
 
-  final List<TabInfo> myTabs;
+  final List<TabInfo> children;
 
   @override
   Widget build(BuildContext context) {
     // Tab controller controls tabs. the length must match the current tabs.
     return DefaultTabController(
-      length: myTabs.length,
+      length: children.length,
       child: Column(children: <Widget>[
         Container(
           color: Colors.blue,
@@ -38,9 +38,9 @@ class Tabs extends StatelessWidget {
             // This function retrives the tab label from myTabs.
             labelPadding: EdgeInsets.symmetric(
                 horizontal:
-                    MediaQuery.of(context).size.width / myTabs.length / 1.25),
+                    MediaQuery.of(context).size.width / children.length / 1.25),
             isScrollable: true,
-            tabs: myTabs.map((TabInfo label) {
+            tabs: children.map((TabInfo label) {
               return Center(child: label.tabLabel);
             }).toList(),
           ),
@@ -50,8 +50,8 @@ class Tabs extends StatelessWidget {
             // TabBarView displays the content of the currently selected tab by index.
             child: TabBarView(
           // This function retrives the tab centent from myTabs. The index is protected by the List structure.
-          children: myTabs.map((TabInfo content) {
-            return content.content;
+          children: children.map((TabInfo content) {
+            return content.child;
           }).toList(),
         )),
       ]),

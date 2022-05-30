@@ -20,10 +20,10 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         child: Tabs(
-          myTabs: <TabInfo>[
+          children: <TabInfo>[
             TabInfo(
                 tabLabel: Tab(text: "Forms"),
-                content: Column(
+                child: Column(
                   children: [
                     Text("This is where form content appears"),
                     Text("asdfasfd")
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                 )),
             TabInfo(
                 tabLabel: Tab(text: "Details"),
-                content: Column(
+                child: Column(
                   children: [
                     Text("Date, Time, Type, Where"),
                     Text("Delete"),
@@ -41,11 +41,11 @@ class _HomePageState extends State<HomePage> {
                 tabLabel: Tab(
                   text: "New Appointment",
                 ),
-                content: Tabs(
-                  myTabs: [
+                child: Tabs(
+                  children: [
                     TabInfo(
                         tabLabel: Tab(text: "Type"),
-                        content: Column(
+                        child: Column(
                           children: [
                             Text("Writen Test, Road Test"),
                             Text("Next"),
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                         )),
                     TabInfo(
                         tabLabel: Tab(text: "Location"),
-                        content: Column(
+                        child: Column(
                           children: [
                             Text(
                                 "Moncton(available), Sackville(not available), "),
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                         )),
                     TabInfo(
                         tabLabel: Tab(text: "Date"),
-                        content: Column(
+                        child: Column(
                           children: [
                             Text("Calendar"),
                             Text("Prev, Next"),
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                         )),
                     TabInfo(
                         tabLabel: Tab(text: "Time"),
-                        content: Column(
+                        child: Column(
                           children: [
                             Text(
                                 "Date: , Times Available: (9:30, 10:30, ... )"),
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                         )),
                     TabInfo(
                         tabLabel: Tab(text: "Review"),
-                        content: Column(
+                        child: Column(
                           children: [
                             Text(
                                 "Type: RoadTest, Where: Barhust, When: Date / Time"),
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                         )),
                     TabInfo(
                         tabLabel: Tab(text: "Confirmed"),
-                        content: Column(
+                        child: Column(
                           children: [
                             Text("For: User, In: Bathurst, At: Date / Time"),
                             Text("Back"),
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                 )),
             TabInfo(
               tabLabel: Tab(text: "Calendar"),
-              content: Calendar(),
+              child: Calendar(),
             ),
           ],
         ),
