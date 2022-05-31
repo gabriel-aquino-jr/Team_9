@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mockup/components/calendar.dart';
+import 'package:mockup/pages/new_appointment/appt_confirmed.dart';
+import 'package:mockup/pages/create_account.dart';
+import 'package:mockup/pages/forgot_password.dart';
+import 'package:mockup/pages/login.dart';
+import 'package:mockup/pages/my_appointments.dart';
+import 'package:mockup/pages/new_appointment.dart';
+import 'package:mockup/pages/view_appointment.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +19,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: LoginDemo.route,
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        LoginDemo.route: (context) => LoginDemo(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        MyAppointments.route: (context) => const MyAppointments(),
+        NewAppointment.route: (context) => const NewAppointment(),
+        ForgotPassword.route: (context) => const ForgotPassword(),
+        CreateAccount.route: (context) => const CreateAccount(),
+        AppointmentConfirmed.route: (context) => const AppointmentConfirmed(),
+        ViewAppointments.route: ((context) => const ViewAppointments()),
+        // home: LoginDemo(), // This doesn't work with Routes
+      },
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,30 +43,6 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Calendar(),
       ),
     );
   }

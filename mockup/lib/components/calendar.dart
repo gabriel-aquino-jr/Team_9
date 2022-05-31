@@ -133,6 +133,8 @@ class _CalendarState extends State<Calendar> {
             valueListenable: _selectedEvents,
             builder: (context, value, _) {
               return ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
                 itemCount: value.length,
                 itemBuilder: (context, index) {
                   return Container(
