@@ -44,7 +44,7 @@ class _LoginDemoState extends State<LoginDemo> {
               const Padding(
                 //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
                 padding: EdgeInsets.symmetric(horizontal: 15),
-                child: FancyText(ftext: 'snbDrive'),
+                child: FancyText(ftext: 'snbDrive', style: Style.header),
               ),
               const Padding(
                 //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
@@ -73,7 +73,7 @@ class _LoginDemoState extends State<LoginDemo> {
                 ),
               ),
               NavBtn(
-                  btnType: BtnType.text,
+                  btnType: BtnType.link,
                   label: 'Forgot Password',
                   route: ForgotPassword.route),
               NavBtn(label: 'Login', route: MyAppointments.route),
@@ -81,7 +81,7 @@ class _LoginDemoState extends State<LoginDemo> {
                 height: 130,
               ),
               NavBtn(
-                btnType: BtnType.text,
+                btnType: BtnType.link,
                 label: 'New User? Create Account',
                 route: CreateAccount.route,
               ),

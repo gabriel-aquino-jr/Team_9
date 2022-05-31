@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mockup/components/textbox.dart';
 
-enum BtnType { text, outline }
+enum BtnType { link, outline }
 
 class NavBtn extends StatelessWidget {
   const NavBtn(
@@ -13,14 +14,15 @@ class NavBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (btnType == BtnType.text) {
+    if (btnType == BtnType.link) {
       return TextButton(
           onPressed: () {
             Navigator.pushNamed(context, route);
           },
-          child: Text(
-            label,
-            style: TextStyle(color: Colors.blue, fontSize: 15),
+          child: FancyText(
+            ftext: label,
+            style: Style.link,
+            // style: TextStyle(color: Colors.blue, fontSize: 15),
           ));
     } else {
       return Container(
