@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mockup/components/nav_button.dart';
-import 'package:mockup/pages/login.dart';
+import 'package:mockup/provider/button_taplistener.dart';
+import 'package:provider/provider.dart';
 
 class PageHeader extends StatefulWidget {
   const PageHeader(
@@ -18,15 +18,48 @@ class PageHeader extends StatefulWidget {
 class _PageHeaderState extends State<PageHeader> {
   @override
   Widget build(BuildContext context) {
+    final darkmodeToggle = Provider.of<ButtonTapListenerClass>(context);
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: [
-          NavBtn(label: 'Logout', route: LoginDemo.route),
-        ],
-        // Todo make it so not every app bar needs a logout.
-      ),
-      body: widget.body,
-    );
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          title: Text(widget.title),
+          elevation: 0, // this disables the shadow
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomRight,
+              tileMode: TileMode.mirror,
+              colors: (darkmodeToggle.isClicked)
+                  ? <Color>[
+                      Theme.of(context).primaryColorDark,
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).primaryColorLight,
+                      Theme.of(context).backgroundColor,
+                    ]
+                  : <Color>[
+                      Theme.of(context).primaryColorLight,
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).primaryColorDark,
+                      Theme.of(context).backgroundColor,
+                    ],
+            )),
+          ),
+          actions: [
+            // NavBtn(label: 'Logout', route: LoginDemo.route),
+            IconButton(
+                onPressed: () {
+                  darkmodeToggle.clickEvent();
+                },
+                icon: const Icon(
+                  Icons.lightbulb,
+                ))
+          ],
+          // Todo make it so not every app bar needs a logout.
+        ),
+        body: SafeArea(
+          child: widget.body,
+        ));
   }
 }

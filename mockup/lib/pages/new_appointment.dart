@@ -40,7 +40,7 @@ class _NewAppointmentState extends State<NewAppointment> {
             child: const AppontmentTime(),
           ),
           TabInfo(
-            tabLabel: Tab(text: 'Review'),
+            tabLabel: const Tab(text: 'Review'),
             child: const AppontmentReview(),
           ),
         ],

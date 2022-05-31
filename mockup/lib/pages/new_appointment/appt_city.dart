@@ -5,6 +5,10 @@ class AppontmentCity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Choose the City:');
+    return Column(
+      children: [
+        const Text('Choose the City:'),
+      ],
+    );
   }
 }

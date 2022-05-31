@@ -6,9 +6,10 @@ enum BtnType { link, outline }
 class NavBtn extends StatelessWidget {
   const NavBtn(
       {Key? key, this.btnType, required this.label, required this.route})
+      // Above is your class constructor.
       : super(key: key);
 
-  final BtnType? btnType;
+  final BtnType? btnType; // These are the fields filled by the constructor.
   final String label;
   final String route;
 
