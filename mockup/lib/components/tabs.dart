@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mockup/components/calendar.dart';
 
 // By passing the property using this format we can add tabs where FormTabs is called. For Example:
 // FormTabs(
@@ -20,16 +19,28 @@ class TabInfo {
   });
 }
 
-class Tabs extends StatelessWidget {
+class Tabs extends StatefulWidget {
   const Tabs({Key? key, required this.children}) : super(key: key);
-
   final List<TabInfo> children;
+
+  @override
+  State<Tabs> createState() => _TabsState();
+}
+
+class _TabsState extends State<Tabs> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: widget.children.length, vsync: this);
+    _tabController.animateTo(2);
+  }
 
   @override
   Widget build(BuildContext context) {
     // Tab controller controls tabs. the length must match the current tabs.
-    return DefaultTabController(
-      length: children.length,
+    return Center(
       child: Column(children: <Widget>[
         Container(
           color: Colors.blue,
@@ -37,10 +48,12 @@ class Tabs extends StatelessWidget {
           child: TabBar(
             // This function retrives the tab label from myTabs.
             labelPadding: EdgeInsets.symmetric(
-                horizontal:
-                    MediaQuery.of(context).size.width / children.length / 1.25),
+                horizontal: MediaQuery.of(context).size.width /
+                    widget.children.length /
+                    1.25),
             isScrollable: true,
-            tabs: children.map((TabInfo label) {
+            controller: _tabController,
+            tabs: widget.children.map((TabInfo label) {
               return Center(child: label.tabLabel);
             }).toList(),
           ),
@@ -50,7 +63,8 @@ class Tabs extends StatelessWidget {
             // TabBarView displays the content of the currently selected tab by index.
             child: TabBarView(
           // This function retrives the tab centent from myTabs. The index is protected by the List structure.
-          children: children.map((TabInfo content) {
+          controller: _tabController,
+          children: widget.children.map((TabInfo content) {
             return content.child;
           }).toList(),
         )),
