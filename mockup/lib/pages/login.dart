@@ -16,6 +16,7 @@ class _LoginDemoState extends State<LoginDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       // backgroundColor: Colors.white,
       body: Container(
         decoration: const BoxDecoration(
@@ -75,6 +76,7 @@ class _LoginDemoState extends State<LoginDemo> {
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                style: TextStyle(),
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
@@ -103,7 +105,7 @@ class _LoginDemoState extends State<LoginDemo> {
                 route: ForgotPassword.route),
             NavBtn(label: 'Login', route: MyAppointments.route),
             const SizedBox(
-              height: 130,
+              height: 100,
             ),
             NavBtn(
               btnType: BtnType.link,
