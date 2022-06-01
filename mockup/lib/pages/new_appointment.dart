@@ -29,19 +29,19 @@ class _NewAppointmentState extends State<NewAppointment> {
           ),
           TabInfo(
             tabLabel: const Tab(text: 'City'),
-            child: const AppontmentCity(),
+            child: const AppointmentCity(),
           ),
           TabInfo(
             tabLabel: const Tab(text: 'Date'),
-            child: const AppontmentDate(),
+            child: const AppointmentDate(),
           ),
           TabInfo(
             tabLabel: const Tab(text: 'Time'),
-            child: const AppontmentTime(),
+            child: const AppointmentTime(),
           ),
           TabInfo(
             tabLabel: const Tab(text: 'Review'),
-            child: const AppontmentReview(),
+            child: const AppointmentReview(),
           ),
         ],
       ),

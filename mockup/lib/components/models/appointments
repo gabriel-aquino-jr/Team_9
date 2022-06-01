@@ -1,0 +1,25 @@
+import 'dart:convert';
+
+List<Country> countryFromJson(String str) =>
+    List<Country>.from(json.decode(str).map((x) => Country.fromJson(x)));
+
+class Country {
+  String name;
+  int population;
+  String flag;
+  String? coatOfArms;
+
+  Country(
+      {required this.name,
+      required this.population,
+      required this.flag,
+      this.coatOfArms});
+
+  factory Country.fromJson(Map<String, dynamic> json) => Country(
+      name: json['name']['official'],
+      population: json['population'],
+      flag: json['flags']['png'],
+      coatOfArms: json['coatOfArms']['png'] == null
+          ? "No Coat of Arms supplied"
+          : json['coatOfArms']['png']);
+}
