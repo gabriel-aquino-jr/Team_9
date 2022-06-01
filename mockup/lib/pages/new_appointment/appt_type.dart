@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
+import 'package:mockup/utilities/palette.dart';
 // source: https://stackoverflow.com/questions/60027498/flutter-radio-value-not-changing-in-stepper
 /*
 void main() => runApp(MyApp());
@@ -46,29 +47,37 @@ class _AppointmentTypeState extends State<AppointmentType> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        FancyText(ftext: 'Choose Appointment Type', style: Style.header),
-        ListTile(
-          title: const Text('Written Test'),
-          leading: Radio<ApptType>(
-            value: ApptType.written,
-            groupValue: _character,
-            onChanged: (ApptType? value) {
-              setState(() {
-                _character = value;
-              });
-            },
-          ),
-        ),
-        ListTile(
-          title: const Text('Road Test'),
-          leading: Radio<ApptType>(
-            value: ApptType.road,
-            groupValue: _character,
-            onChanged: (ApptType? value) {
-              setState(() {
-                _character = value;
-              });
-            },
+        const FancyText(ftext: 'Choose Appointment Type', style: Style.header),
+        Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          shadowColor: Palette.darkOffWhite,
+          child: Column(
+            children: [
+              ListTile(
+                title: const Text('Written Test'),
+                leading: Radio<ApptType>(
+                  value: ApptType.written,
+                  groupValue: _character,
+                  onChanged: (ApptType? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Road Test'),
+                leading: Radio<ApptType>(
+                  value: ApptType.road,
+                  groupValue: _character,
+                  onChanged: (ApptType? value) {
+                    setState(() {
+                      _character = value;
+                    });
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ],

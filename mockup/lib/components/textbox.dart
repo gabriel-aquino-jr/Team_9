@@ -29,32 +29,26 @@ class _FancyTextState extends State<FancyText> {
 
 TextStyle chooseStyle(Style style) {
   if (style == Style.button) {
-    return const TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.bold,
-        color: Color.fromARGB(255, 6, 4, 94));
+    return TextStyle(
+        fontSize: 14, fontWeight: FontWeight.bold, color: Colors.grey.shade700);
   } else if (style == Style.header) {
-    return const TextStyle(
-        fontSize: 28,
-        fontWeight: FontWeight.bold,
-        color: Color.fromARGB(255, 6, 4, 94));
+    return TextStyle(
+        fontSize: 28, fontWeight: FontWeight.bold, color: Colors.grey.shade700);
   } else if (style == Style.link) {
-    return const TextStyle(
+    return TextStyle(
         fontSize: 15,
         fontWeight: FontWeight.normal,
         color: Color.fromARGB(255, 85, 132, 194));
   } else if (style == Style.body) {
-    return const TextStyle(
-        fontSize: 34,
-        fontWeight: FontWeight.bold,
-        color: Color.fromARGB(255, 6, 4, 94));
+    return TextStyle(
+        fontSize: 34, fontWeight: FontWeight.bold, color: Colors.grey.shade700);
   } else if (style == Style.table) {
-    return const TextStyle(
+    return TextStyle(
         fontSize: 34,
         fontWeight: FontWeight.bold,
         color: Color.fromARGB(255, 6, 4, 94));
   } else {
-    return const TextStyle(
+    return TextStyle(
         fontSize: 15,
         fontWeight: FontWeight.bold,
         color: Color.fromARGB(255, 6, 4, 94));
