@@ -27,7 +27,7 @@ class AppointmentCity extends StatefulWidget {
   State<AppointmentCity> createState() => _AppointmentCityState();
 }
 
-enum Cities { moncton, sackville, bathrust, woodstock, edmundston }
+enum Cities { moncton, sackville, bathurst, woodstock, edmundston }
 
 class _AppointmentCityState extends State<AppointmentCity> {
   Cities? _character = Cities.moncton;
@@ -72,9 +72,9 @@ class _AppointmentCityState extends State<AppointmentCity> {
           ),
         ),
         ListTile(
-          title: const Text('Bathrust (Not available)'),
+          title: const Text('Bathurst (Not available)'),
           leading: Radio<Cities>(
-            value: Cities.bathrust,
+            value: Cities.bathurst,
             groupValue: _character,
             onChanged: (Cities? value) {
               setState(() {

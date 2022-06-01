@@ -34,7 +34,7 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _tabController = TabController(length: widget.children.length, vsync: this);
-    _tabController.animateTo(2);
+    _tabController.animateTo(0);
   }
 
   @override

@@ -29,7 +29,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const FancyText(ftext: 'Choose City', style: Style.header),
+        const FancyText(ftext: 'Choose Time', style: Style.header),
         ListTile(
           title: const Text('10:30 AM'),
           leading: Radio<TimeAvailable>(

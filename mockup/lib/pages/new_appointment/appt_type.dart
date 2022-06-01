@@ -27,10 +27,10 @@ class AppointmentType extends StatefulWidget {
   State<AppointmentType> createState() => _AppointmentTypeState();
 }
 
-enum SingingCharacter { lafayette, jefferson }
+enum ApptType { written, road }
 
 class _AppointmentTypeState extends State<AppointmentType> {
-  SingingCharacter? _character = SingingCharacter.lafayette;
+  ApptType? _character = ApptType.written;
 
   // List<Step> get _steps => <Step>[_lastQualificationStep()];
   // int _currentStep = 0;
@@ -48,11 +48,11 @@ class _AppointmentTypeState extends State<AppointmentType> {
       children: <Widget>[
         FancyText(ftext: 'Choose Appointment Type', style: Style.header),
         ListTile(
-          title: const Text('Lafayette'),
-          leading: Radio<SingingCharacter>(
-            value: SingingCharacter.lafayette,
+          title: const Text('Written Test'),
+          leading: Radio<ApptType>(
+            value: ApptType.written,
             groupValue: _character,
-            onChanged: (SingingCharacter? value) {
+            onChanged: (ApptType? value) {
               setState(() {
                 _character = value;
               });
@@ -60,11 +60,11 @@ class _AppointmentTypeState extends State<AppointmentType> {
           ),
         ),
         ListTile(
-          title: const Text('Thomas Jefferson'),
-          leading: Radio<SingingCharacter>(
-            value: SingingCharacter.jefferson,
+          title: const Text('Road Test'),
+          leading: Radio<ApptType>(
+            value: ApptType.road,
             groupValue: _character,
-            onChanged: (SingingCharacter? value) {
+            onChanged: (ApptType? value) {
               setState(() {
                 _character = value;
               });

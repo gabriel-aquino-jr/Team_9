@@ -35,7 +35,7 @@ TextStyle chooseStyle(Style style) {
         color: Color.fromARGB(255, 6, 4, 94));
   } else if (style == Style.header) {
     return const TextStyle(
-        fontSize: 34,
+        fontSize: 28,
         fontWeight: FontWeight.bold,
         color: Color.fromARGB(255, 6, 4, 94));
   } else if (style == Style.link) {
@@ -55,7 +55,7 @@ TextStyle chooseStyle(Style style) {
         color: Color.fromARGB(255, 6, 4, 94));
   } else {
     return const TextStyle(
-        fontSize: 34,
+        fontSize: 15,
         fontWeight: FontWeight.bold,
         color: Color.fromARGB(255, 6, 4, 94));
   }
