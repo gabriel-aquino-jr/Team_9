@@ -35,8 +35,19 @@ class _LoginDemoState extends State<LoginDemo> {
               child: Center(
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Palette.lightGreen,
-                      borderRadius: BorderRadius.circular(50.0)),
+                    color: Color.fromARGB(255, 182, 205, 205),
+                    borderRadius: BorderRadius.circular(50.0),
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 1,
+                          color: Palette.matDarkGreen.shade900,
+                          spreadRadius: 2),
+                      BoxShadow(
+                          blurRadius: 2,
+                          color: Palette.matDarkGreen.shade100,
+                          spreadRadius: 4),
+                    ],
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(10, 8, 10, 16),
                     child: Column(
