@@ -29,7 +29,7 @@ class _NewAppointmentState extends State<NewAppointment> {
           ),
           TabInfo(
             tabLabel: const Tab(text: 'City'),
-            child: const AppontmentCity(),
+            child: const AppointmentCity(),
           ),
           TabInfo(
             tabLabel: const Tab(text: 'Date'),
@@ -37,7 +37,7 @@ class _NewAppointmentState extends State<NewAppointment> {
           ),
           TabInfo(
             tabLabel: const Tab(text: 'Time'),
-            child: const AppontmentTime(),
+            child: const AppointmentTime(),
           ),
           TabInfo(
             tabLabel: Tab(text: 'Review'),

@@ -23,7 +23,19 @@ class TabInfo {
 class Tabs extends StatelessWidget {
   const Tabs({Key? key, required this.children}) : super(key: key);
 
+<<<<<<< Updated upstream
   final List<TabInfo> children;
+=======
+class _TabsState extends State<Tabs> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: widget.children.length, vsync: this);
+    _tabController.animateTo(0);
+  }
+>>>>>>> Stashed changes
 
   @override
   Widget build(BuildContext context) {
