@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mockup/utilities/palette.dart';
 
 // By passing the property using this format we can add tabs where FormTabs is called. For Example:
 // FormTabs(
@@ -42,21 +43,55 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
     // Tab controller controls tabs. the length must match the current tabs.
     return Center(
       child: Column(children: <Widget>[
+        SizedBox(
+          height: 1,
+        ),
         Container(
-          color: Colors.blue,
+          decoration: const BoxDecoration(
+            color: Palette.lightGreen,
+            border: Border(
+                left: BorderSide(
+                    width: 10,
+                    color: Palette.darkGreen,
+                    style: BorderStyle.solid)),
+          ),
           // Tab bar displays the navigation for the tabs. The index of tabbar will be used in the TabBarView.
           child: TabBar(
+            labelStyle: const TextStyle(
+              fontSize: 18,
+              color: Palette.lightBlue,
+              shadows: [
+                Shadow(
+                  offset: Offset(0.0, 0.0),
+                  blurRadius: 3.0,
+                  color: Color.fromARGB(255, 6, 50, 25),
+                ),
+                Shadow(
+                  offset: Offset(0.0, 0.0),
+                  blurRadius: 3.0,
+                  color: Color.fromARGB(255, 6, 50, 25),
+                ),
+                Shadow(
+                  offset: Offset(0.0, 0.0),
+                  blurRadius: 8.0,
+                  color: Color.fromARGB(123, 3, 63, 42),
+                )
+              ],
+            ),
             // This function retrives the tab label from myTabs.
             labelPadding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width /
                     widget.children.length /
-                    1.25),
+                    1.5),
             isScrollable: true,
             controller: _tabController,
             tabs: widget.children.map((TabInfo label) {
               return Center(child: label.tabLabel);
             }).toList(),
           ),
+        ),
+        SizedBox(
+          height: 40,
         ),
         // Flexible is required here so elements do not get an infinite width in the column.
         Flexible(

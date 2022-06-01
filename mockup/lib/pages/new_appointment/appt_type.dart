@@ -48,9 +48,7 @@ class _AppointmentTypeState extends State<AppointmentType> {
     return Column(
       children: <Widget>[
         const FancyText(ftext: 'Choose Appointment Type', style: Style.header),
-        Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          shadowColor: Palette.darkOffWhite,
+        Container(
           child: Column(
             children: [
               ListTile(

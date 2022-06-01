@@ -4,6 +4,7 @@ import 'package:mockup/components/textbox.dart';
 import 'package:mockup/pages/create_account.dart';
 import 'package:mockup/pages/forgot_password.dart';
 import 'package:mockup/pages/my_appointments.dart';
+import 'package:mockup/utilities/palette.dart';
 
 class LoginDemo extends StatefulWidget {
   static String route = "login";
@@ -22,8 +23,8 @@ class _LoginDemoState extends State<LoginDemo> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color.fromARGB(255, 183, 212, 235),
-            Color.fromARGB(255, 125, 176, 235),
+            Palette.lightBlue,
+            Palette.lightGreen,
           ],
         )),
         child: Column(
@@ -44,7 +45,10 @@ class _LoginDemoState extends State<LoginDemo> {
             const Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
-              child: FancyText(ftext: 'snbDrive', style: Style.header),
+              child: FancyText(ftext: 'snbDrive', style: Style.mainTitle),
+            ),
+            SizedBox(
+              height: 50,
             ),
             const Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),

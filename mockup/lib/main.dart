@@ -23,36 +23,37 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ButtonProvider(
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        initialRoute: LoginDemo.route,
-        routes: {
-          // When navigating to the "/" route, build the FirstScreen widget.
-          LoginDemo.route: (context) => LoginDemo(),
-          MyAppointments.route: (context) => const MyAppointments(),
-          NewAppointment.route: (context) => const NewAppointment(),
-          ForgotPassword.route: (context) => const ForgotPassword(),
-          CreateAccount.route: (context) => const CreateAccount(),
-          AppointmentConfirmed.route: (context) => const AppointmentConfirmed(),
-          ViewAppointments.route: (context) => const ViewAppointments(),
-          // home: LoginDemo(), // This doesn't work with Routes
-        },
-        theme: ThemeData(
-          textTheme: TextTypography.textTheme,
-          fontFamily: TextTypography.fontFamily,
-          primarySwatch: Colors.blue,
-          // primarySwatch: Palette.matDarkGreen,  // This is breaking
-          brightness: Brightness.light,
-          backgroundColor: Colors.white,
-          primaryColor: Palette.medGreen,
-          primaryColorDark: Palette.darkGreen,
-          primaryColorLight: Palette.lightGreen,
-        ),
-        darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          backgroundColor: Colors.black,
-        ),
+    return
+        // ButtonProvider(
+        //   child:
+        MaterialApp(
+      title: 'Flutter Demo',
+      initialRoute: LoginDemo.route,
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        LoginDemo.route: (context) => LoginDemo(),
+        MyAppointments.route: (context) => const MyAppointments(),
+        NewAppointment.route: (context) => const NewAppointment(),
+        ForgotPassword.route: (context) => const ForgotPassword(),
+        CreateAccount.route: (context) => const CreateAccount(),
+        AppointmentConfirmed.route: (context) => const AppointmentConfirmed(),
+        ViewAppointments.route: (context) => const ViewAppointments(),
+        // home: LoginDemo(), // This doesn't work with Routes
+      },
+      theme: ThemeData(
+        textTheme: TextTypography.textTheme,
+        fontFamily: TextTypography.fontFamily,
+        primarySwatch: Colors.amber,
+        // primarySwatch: Palette.matDarkGreen,  // This is breaking
+        brightness: Brightness.light,
+        backgroundColor: Colors.white,
+        primaryColor: Palette.medGreen,
+        primaryColorDark: Palette.darkGreen,
+        primaryColorLight: Palette.lightGreen,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        backgroundColor: Colors.black,
       ),
     );
   }

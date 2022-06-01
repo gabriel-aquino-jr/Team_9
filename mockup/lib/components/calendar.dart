@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:mockup/utilities/palette.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 //#region Utilities
@@ -29,8 +30,8 @@ final _calEventSource = Map.fromIterable(List.generate(50, (index) => index),
         item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
   ..addAll({
     calToday: [
-      Event('Today\'s Event 1'),
-      Event('Today\'s Event 2'),
+      const Event('Today\'s Event 1'),
+      const Event('Today\'s Event 2'),
     ],
   });
 int getHashCode(DateTime key) {
@@ -85,7 +86,11 @@ class _CalendarState extends State<Calendar> {
           lastDay: calLastDay,
           focusedDay: calToday,
           startingDayOfWeek: StartingDayOfWeek.monday,
-          calendarStyle: CalendarStyle(),
+          calendarStyle: const CalendarStyle(
+            rangeHighlightColor: Palette.medGreen,
+            todayDecoration: BoxDecoration(color: Palette.lightGreen),
+            selectedDecoration: BoxDecoration(color: Palette.darkGreen),
+          ),
           calendarFormat: _calendarFormat,
 
           eventLoader: _getEventsForDay,
@@ -118,7 +123,7 @@ class _CalendarState extends State<Calendar> {
           },
         ),
         ElevatedButton(
-          child: Text('Clear selection'),
+          child: const Text('Clear selection'),
           onPressed: () {
             setState(() {
               _selectedDay = calToday;

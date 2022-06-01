@@ -11,12 +11,25 @@ class AppointmentReview extends StatelessWidget {
     return Column(
       children: [
         Column(
-          children: const [
-            FancyText(ftext: 'Review your choices:', style: Style.header),
-            FancyText(ftext: 'Test Type: Written', style: Style.base),
-            FancyText(ftext: 'City: Sackville', style: Style.base),
-            FancyText(ftext: 'Date: June 03, 2022', style: Style.base),
-            FancyText(ftext: 'Time: 01:30PM', style: Style.base),
+          children: [
+            const FancyText(ftext: 'Review your choices:', style: Style.header),
+            SizedBox(
+              height: 40,
+            ),
+            Wrap(
+              direction: Axis.vertical,
+              spacing: 20,
+              children: [
+                const FancyText(ftext: 'Test Type: Written', style: Style.base),
+                const FancyText(ftext: 'City: Sackville', style: Style.base),
+                const FancyText(
+                    ftext: 'Date: June 03, 2022', style: Style.base),
+                const FancyText(ftext: 'Time: 01:30PM', style: Style.base),
+              ],
+            ),
+            SizedBox(
+              height: 40,
+            )
           ],
         ),
         NavBtn(label: 'Submit', route: AppointmentConfirmed.route),

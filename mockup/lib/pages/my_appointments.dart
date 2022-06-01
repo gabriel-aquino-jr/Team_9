@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/page_header.dart';
+import 'package:mockup/components/textbox.dart';
 import 'package:mockup/pages/new_appointment.dart';
 import 'package:mockup/pages/view_Appointment.dart';
+import 'package:mockup/utilities/palette.dart';
 
 /*
 void main() {
@@ -36,12 +38,33 @@ class _MyAppointmentsState extends State<MyAppointments> {
     return PageHeader(
       title: 'Your Appointments',
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: ListView(
           children: [
             Column(
               children: [
-                _createDataTable(),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 20.0),
+                        child: FancyText(
+                            ftext: "Welcome Jebbidiah, here are your Tests",
+                            style: Style.header),
+                      ),
+                      const FancyText(
+                          ftext: "Good Luck on your tests!", style: Style.base),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(color: Palette.lightOffWhite),
+                  child: _createDataTable(),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
                 NavBtn(label: 'New', route: NewAppointment.route)
               ],
             )

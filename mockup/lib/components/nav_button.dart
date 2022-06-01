@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/textbox.dart';
+import 'package:mockup/utilities/palette.dart';
 
 enum BtnType { link, outline }
 
@@ -30,14 +31,20 @@ class NavBtn extends StatelessWidget {
         height: 50,
         width: 250,
         decoration: BoxDecoration(
-            color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+            border: Border.all(
+                width: 2.0, color: Palette.medGreen, style: BorderStyle.solid),
+            color: Palette.darkGreen,
+            borderRadius: BorderRadius.circular(20)),
         child: OutlinedButton(
           onPressed: () {
             Navigator.pushNamed(context, route);
           },
           child: Text(
             label,
-            style: const TextStyle(color: Colors.white, fontSize: 25),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+            ),
           ),
         ),
       );
