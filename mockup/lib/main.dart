@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         //   child:
         MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: true,
       initialRoute: LoginDemo.route,
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
