@@ -76,8 +76,21 @@ class _LoginDemoState extends State<LoginDemo> {
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                style: TextStyle(),
+                // style: TextStyle(  // This is inner text
+                //     fontSize: 34,
+                //     fontWeight: FontWeight.bold,
+                //     color: Colors.grey.shade700),
                 decoration: InputDecoration(
+                    floatingLabelStyle: TextStyle(
+                      fontSize: 22,
+                      color: Palette.darkred,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Palette.darkred,
+                      ),
+                    ),
                     border: OutlineInputBorder(),
                     filled: true,
                     fillColor: Colors.white,
@@ -92,6 +105,16 @@ class _LoginDemoState extends State<LoginDemo> {
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(
+                    floatingLabelStyle: TextStyle(
+                      fontSize: 22,
+                      color: Palette.darkred,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: Palette.darkred,
+                      ),
+                    ),
                     border: OutlineInputBorder(),
                     filled: true,
                     fillColor: Colors.white,
