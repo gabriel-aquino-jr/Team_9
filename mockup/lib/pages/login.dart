@@ -34,18 +34,28 @@ class _LoginDemoState extends State<LoginDemo> {
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
                 child: Container(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('lib/assets/images/NBLogo.png')),
+                  decoration: BoxDecoration(
+                      color: Palette.lightGreen,
+                      borderRadius: BorderRadius.circular(50.0)),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 8, 10, 16),
+                    child: Column(
+                      children: [
+                        Container(
+                            width: 200,
+                            height: 150,
+                            child: Image.asset('lib/assets/images/NBLogo.png')),
+                        const Padding(
+                          //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: FancyText(
+                              ftext: 'snbDrive', style: Style.mainTitle),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-            const Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: FancyText(ftext: 'snbDrive', style: Style.mainTitle),
             ),
             SizedBox(
               height: 50,
