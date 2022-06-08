@@ -188,9 +188,9 @@ class DBHelper {
   // Query all appointments from a customer
   Future<List<Map<String, dynamic>>> queryMyAppointments(customerId) async {
     Database db = await instance.database;
-    return await db.rawQuery('''
-        SELECT 
-          date, 
+    final resultSet = await db.rawQuery('''
+        SELECT
+          date,
           time,
           type,
           location
@@ -199,6 +199,7 @@ class DBHelper {
         ON Schedules.scheduleID = Appointments.scheduleID
         WHERE Appointments.customerID = $customerId
         ''');
+    return resultSet;
   }
 /*
   // We are assuming here that the id column the map is set. The other column
