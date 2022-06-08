@@ -5,6 +5,7 @@ import 'package:mockup/pages/create_account.dart';
 import 'package:mockup/pages/forgot_password.dart';
 import 'package:mockup/pages/my_appointments.dart';
 import 'package:mockup/utilities/palette.dart';
+import 'package:mockup/database/db_helper.dart';
 
 class LoginDemo extends StatefulWidget {
   static String route = "login";
@@ -13,6 +14,19 @@ class LoginDemo extends StatefulWidget {
 }
 
 class _LoginDemoState extends State<LoginDemo> {
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  final dbHelper = DBHelper.instance;
+
+  Future<void> _validateLogin() async {
+    dbHelper.insertSampleCustomer();
+    if (await dbHelper.authLogin(_email, _password)) {
+      debugPrint('login ok!');
+    } else {
+      debugPrint('login fail!');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,10 +83,10 @@ class _LoginDemoState extends State<LoginDemo> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            const Padding(
+            Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
@@ -80,7 +94,8 @@ class _LoginDemoState extends State<LoginDemo> {
                 //     fontSize: 34,
                 //     fontWeight: FontWeight.bold,
                 //     color: Colors.grey.shade700),
-                decoration: InputDecoration(
+                controller: _email,
+                decoration: const InputDecoration(
                     floatingLabelStyle: TextStyle(
                       fontSize: 22,
                       color: Palette.darkred,
@@ -98,13 +113,13 @@ class _LoginDemoState extends State<LoginDemo> {
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
             ),
-            const Padding(
+            Padding(
               padding:
                   EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     floatingLabelStyle: TextStyle(
                       fontSize: 22,
                       color: Palette.darkred,
@@ -120,6 +135,7 @@ class _LoginDemoState extends State<LoginDemo> {
                     fillColor: Colors.white,
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
+                controller: _password,
               ),
             ),
             NavBtn(
@@ -127,6 +143,8 @@ class _LoginDemoState extends State<LoginDemo> {
                 label: 'Forgot Password',
                 route: ForgotPassword.route),
             NavBtn(label: 'Login', route: MyAppointments.route),
+            ElevatedButton(
+                onPressed: () => _validateLogin(), child: const Text('login2')),
             const SizedBox(
               height: 100,
             ),

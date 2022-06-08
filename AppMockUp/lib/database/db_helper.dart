@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DBHelper {
-  static const _dbName = 'snbDrive.db';
+  static const _dbName = 'snbDriveDB.db';
   static const _dbVersion = 1;
 
   //Creating a singleton class
@@ -89,11 +89,34 @@ class DBHelper {
     });
   }
 
-  Future<bool> authLogin(String email, String password) async {
+  Future<bool> authLogin(email, password) async {
     Database db = await instance.database;
-    final loginFound = await db.query('customer',
-        where: "email = $email and password = $password"); // Note ""
+    String emailText = email.text;
+    String passwordText = password.text;
+    final loginFound = await db.rawQuery('''SELECT * FROM customers
+        where email = '$emailText' and password = '$passwordText' ''');
+    debugPrint('login records matched: {$loginFound.length}');
     return (loginFound.isNotEmpty);
+  }
+
+  Future<int> insertSampleCustomer() async {
+    Database db = await instance.database;
+    db.rawDelete('DELETE FROM customers');
+    debugPrint('Customers records deleted');
+    debugPrint('Sample customer Inserted');
+    return await db.rawInsert('''INSERT INTO customers 
+            (
+            fullName,
+            email,
+            password
+            )
+            VALUES
+            (
+              'John Doe',
+            'jdoe@ca.ca',
+            '123'
+            )
+    ''');
   }
 
 /*
