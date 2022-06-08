@@ -1,5 +1,5 @@
 import 'dart:collection';
-import 'dart:js';
+//import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:mockup/components/selection_box.dart';
