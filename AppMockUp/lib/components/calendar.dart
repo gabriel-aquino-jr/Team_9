@@ -1,18 +1,25 @@
 import 'dart:collection';
+import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:mockup/components/selection_box.dart';
+import 'package:mockup/database/db_helper.dart';
+import 'package:mockup/main.dart';
+import 'package:mockup/model/schedule_model.dart';
 import 'package:mockup/utilities/palette.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 //#region Utilities
 class Event {
   final String title;
-
   const Event(this.title);
 
   @override
   String toString() => title;
 }
+
+// Connect to database
+final dbhelper = DBHelper.instance;
 
 // Set initial dates
 final calToday = DateTime.now();
@@ -24,10 +31,20 @@ final calEvents = LinkedHashMap<DateTime, List<Event>>(
   hashCode: getHashCode,
 )..addAll(_calEventSource);
 
-final _calEventSource = Map.fromIterable(List.generate(50, (index) => index),
+final _calEventSource = Map.fromIterable(
+)
+
+final _calEventSource = 
+  Map.fromIterable(
+    
+    List.generate(50, (index) => index),
+    
     key: (item) => DateTime.utc(calFirstDay.year, calFirstDay.month, item * 5),
+    
     value: (item) => List.generate(
+    
         item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
+  
   ..addAll({
     calToday: [
       const Event('Today\'s Event 1'),
@@ -56,6 +73,27 @@ class _CalendarState extends State<Calendar> {
   // Select day functions
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+
+// Query Events
+List<Schedules> _schedules = [];
+void _queryAllEvents() async{
+  dbhelper.database;
+  final allRows = await dbhelper.queryById();
+  debugPrint('query all employee rows:');
+  for (var row in allRows) {
+    _schedules.add(Schedules.fromMap(row));
+  }
+
+  setState((){});
+  allRows.forEach(print);
+}
+
+Map<DateTime, Event> _events = [];
+void _toCalenderEvents(){
+  for (var s in _schedules) {
+    
+  }
+}
 
   @override
   void initState() {
