@@ -1,0 +1,4 @@
+#Wed Jun 01 11:01:37 ADT 2022
+base.0=D\:\\src\\2022\\hybrid\\Team_9\\mockup\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
