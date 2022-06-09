@@ -22,6 +22,9 @@ class _LoginDemoState extends State<LoginDemo> {
   Future<void> _validateLogin() async {
     if (await dbHelper.authLogin(_email, _password)) {
       debugPrint('login ok!');
+      _email.clear();
+      _password.clear();
+      Navigator.pushNamed(context, 'MyAppointments');
     } else {
       debugPrint('login fail!');
       ScaffoldMessenger.of(context).showSnackBar(
