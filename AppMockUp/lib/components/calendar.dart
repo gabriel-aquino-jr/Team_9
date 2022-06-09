@@ -30,8 +30,6 @@ final dbhelper = DBHelper.instance;
 //   hashCode: getHashCode,
 // )..addAll(_calEventSource);
 
-// final _calEventSource = Map<DateTime, List<Event>>.fromIterable(_events);
-
 // final _calEventSource = Map.fromIterable(List.generate(50, (index) => index),
 //     key: (item) => DateTime.utc(calFirstDay.year, calFirstDay.month, item * 5),
 //     value: (item) => List.generate(
@@ -77,11 +75,15 @@ class _CalendarState extends State<Calendar> {
       DateTime(calToday.year, calToday.month + 5, calToday.day);
 
 // Query Events
-  late final calEvents = LinkedHashMap<DateTime, List<Event>>(
-    equals: isSameDay,
-    hashCode: getHashCode,
-  )..addAll(_calEventSource);
+  // late final calEvents = LinkedHashMap<DateTime, List<Event>>(
+  //   equals: isSameDay,
+  //   hashCode: getHashCode,
+  // )..addAll(_calEventSource);
 
+// Step 3:
+  Map<DateTime, List<Event>> calEvents = {};
+
+// Step 1: Get Data from database
   List<Schedules> _schedules = [];
   void _queryAllEvents() async {
     dbhelper.database;
@@ -91,9 +93,17 @@ class _CalendarState extends State<Calendar> {
       _schedules.add(Schedules.fromMap(row));
     }
     _toCalenderEvents();
+
+    calEvents = LinkedHashMap<DateTime, List<Event>>(
+      equals: isSameDay,
+      hashCode: getHashCode,
+    )..addAll(_calEventSource);
+
+    setState(() {});
     allRows.forEach(print);
   }
 
+//  Step 2: Format to Calendar Type
   Map<DateTime, List<Event>> _calEventSource = {};
   void _toCalenderEvents() {
     for (var s in _schedules) {
@@ -175,7 +185,6 @@ class _CalendarState extends State<Calendar> {
             setState(() {
               _selectedDay = calToday;
               print("CalEvents " + calEvents.toString());
-              // _selectedEvents.value = [];
             });
           },
         ),
