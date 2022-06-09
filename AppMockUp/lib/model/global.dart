@@ -3,8 +3,13 @@ class AppointmentInfo {
   static String city = "";
   static String date = "";
   static String time = "";
+}
 
-  // AppointmentInfo(this.type, this.city, this.date, this.time);
+ // final String city;
+  // final String date;
+  // final String time;
+
+  // AppointmentInfo(this.type);
 
   // AppointmentInfo.fromMap(Map<String, dynamic> map) {
   //   type = map['type'];
@@ -21,8 +26,6 @@ class AppointmentInfo {
   //     'time': time,
   //   };
   // }
-}
-
 // class AppointmentInfo {
 //   static const String typeWritten = "Written";
 
@@ -45,3 +48,4 @@ class AppointmentInfo {
 // class Globals {
 //   static String
 // }
+

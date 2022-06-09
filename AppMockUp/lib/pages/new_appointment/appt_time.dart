@@ -15,7 +15,7 @@ class AppointmentTime extends StatefulWidget {
 enum TimeAvailable { at1030AM, at1100AM, at0100PM, at0130PM, at0300PM }
 
 class _AppointmentTimeState extends State<AppointmentTime> {
-  TimeAvailable? _character = TimeAvailable.at1030AM;
+  TimeAvailable? _character;
   String time = "";
 
   getValueFromtxt() {

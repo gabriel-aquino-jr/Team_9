@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
-<<<<<<< HEAD
 import 'package:shared_preferences/shared_preferences.dart';
-=======
 import 'package:mockup/database/db_helper.dart';
->>>>>>> 3595850f1d108ee882db1931c078cdf26ad43e1c
 // source: https://stackoverflow.com/questions/60027498/flutter-radio-value-not-changing-in-stepper
 /*
 void main() => runApp(MyApp());

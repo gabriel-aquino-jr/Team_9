@@ -51,6 +51,12 @@ class _AppointmentTypeState extends State<AppointmentType> {
   }
 
   @override
+  void dispose() {
+    getValueFromtxt();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
