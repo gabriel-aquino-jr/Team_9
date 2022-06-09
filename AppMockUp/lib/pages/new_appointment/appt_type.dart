@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
 import 'package:mockup/utilities/palette.dart';
+import '../../model/global.dart';
+
 // source: https://stackoverflow.com/questions/60027498/flutter-radio-value-not-changing-in-stepper
 /*
 void main() => runApp(MyApp());
@@ -31,8 +33,13 @@ class AppointmentType extends StatefulWidget {
 enum ApptType { written, road }
 
 class _AppointmentTypeState extends State<AppointmentType> {
-  ApptType? _character = ApptType.written;
+  ApptType? _character;
+  String type = "";
 
+  getValueFromtxt() {
+    (_character == ApptType.written) ? type = "Written" : type = "Road";
+    AppointmentInfo.type = type;
+  }
   // List<Step> get _steps => <Step>[_lastQualificationStep()];
   // int _currentStep = 0;
   // bool _isStepsCompleted = false;
@@ -59,6 +66,7 @@ class _AppointmentTypeState extends State<AppointmentType> {
                   onChanged: (ApptType? value) {
                     setState(() {
                       _character = value;
+                      getValueFromtxt();
                     });
                   },
                 ),
@@ -71,6 +79,7 @@ class _AppointmentTypeState extends State<AppointmentType> {
                   onChanged: (ApptType? value) {
                     setState(() {
                       _character = value;
+                      getValueFromtxt();
                     });
                   },
                 ),
