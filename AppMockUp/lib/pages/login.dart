@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mockup/components/calendar.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
+import 'package:mockup/model/schedule_model.dart';
 import 'package:mockup/pages/create_account.dart';
 import 'package:mockup/pages/forgot_password.dart';
 import 'package:mockup/pages/my_appointments.dart';
@@ -25,6 +26,19 @@ class _LoginDemoState extends State<LoginDemo> {
     } else {
       debugPrint('login fail!');
     }
+  }
+
+  List<Schedules> _schedules = [];
+  void _queryAllEvents() async {
+    dbhelper.database;
+    final allRows = await dbhelper.queryAllRows("schedules");
+    debugPrint('query all employee rows:');
+    for (var row in allRows) {
+      _schedules.add(Schedules.fromMap(row));
+    }
+
+    setState(() {});
+    allRows.forEach(print);
   }
 
   @override
@@ -152,6 +166,7 @@ class _LoginDemoState extends State<LoginDemo> {
             ElevatedButton(
                 onPressed: () {
                   dbhelper.insertSampleCustomer();
+                  _queryAllEvents();
                 },
                 child: Text("Insert Dummy Data")),
             NavBtn(
