@@ -15,8 +15,8 @@ class LoginDemo extends StatefulWidget {
 }
 
 class _LoginDemoState extends State<LoginDemo> {
-  final _email = TextEditingController();
-  final _password = TextEditingController();
+  var _email = TextEditingController();
+  var _password = TextEditingController();
   final dbHelper = DBHelper.instance;
 
   Future<void> _validateLogin() async {
@@ -24,7 +24,21 @@ class _LoginDemoState extends State<LoginDemo> {
       debugPrint('login ok!');
     } else {
       debugPrint('login fail!');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login failed. Please try again.'),
+          duration: const Duration(milliseconds: 2000),
+        ),
+      );
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // remove before flight :)
+    _email.text = 'jdoe@ca.ca';
+    _password.text = '123';
   }
 
   @override
@@ -88,7 +102,7 @@ class _LoginDemoState extends State<LoginDemo> {
             ),
             Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 // style: TextStyle(  // This is inner text
                 //     fontSize: 34,
@@ -114,8 +128,8 @@ class _LoginDemoState extends State<LoginDemo> {
               ),
             ),
             Padding(
-              padding:
-                  EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 obscureText: true,
@@ -153,7 +167,7 @@ class _LoginDemoState extends State<LoginDemo> {
                 onPressed: () {
                   dbhelper.insertSampleCustomer();
                 },
-                child: Text("Insert Dummy Data")),
+                child: const Text("Insert Dummy Data")),
             NavBtn(
               btnType: BtnType.link,
               label: 'New User? Create Account',
