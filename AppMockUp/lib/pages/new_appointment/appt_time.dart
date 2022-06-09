@@ -3,6 +3,8 @@ import 'package:mockup/components/calendar.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
 import 'package:mockup/model/schedule_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../model/global.dart';
 
 class AppointmentTime extends StatefulWidget {
   const AppointmentTime({Key? key}) : super(key: key);
@@ -12,7 +14,23 @@ class AppointmentTime extends StatefulWidget {
   State<AppointmentTime> createState() => _AppointmentTimeState();
 }
 
-enum TimeAvailable { at830AM, at1030AM, at100PM, at300PM, at0300PM }
+enum TimeAvailable { at830AM, at1030AM, at100PM, at300PM }
+
+TimeAvailable? _character;
+String time = "";
+
+getValueFromtxt() {
+  if (_character == TimeAvailable.at830AM) {
+    time = "08:30:00";
+  } else if (_character == TimeAvailable.at1030AM) {
+    time = "10:30:00";
+  } else if (_character == TimeAvailable.at100PM) {
+    time = "13:00:00";
+  } else if (_character == TimeAvailable.at300PM) {
+    time = "15:00:00";
+  }
+  AppointmentInfo.time = time;
+}
 
 class _AppointmentTimeState extends State<AppointmentTime> {
   TimeAvailable? _character = TimeAvailable.at830AM;
@@ -37,6 +55,9 @@ class _AppointmentTimeState extends State<AppointmentTime> {
     setState(() {});
     allRows.forEach(print);
   }
+  // List<Step> get _steps => <Step>[_lastQualificationStep()];
+  // int _currentStep = 0;
+  // bool _isStepsCompleted = false;
 
   @override
   void initState() {
