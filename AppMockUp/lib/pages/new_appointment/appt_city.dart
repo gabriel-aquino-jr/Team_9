@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
+<<<<<<< HEAD
 import 'package:shared_preferences/shared_preferences.dart';
+=======
+import 'package:mockup/database/db_helper.dart';
+>>>>>>> 3595850f1d108ee882db1931c078cdf26ad43e1c
 // source: https://stackoverflow.com/questions/60027498/flutter-radio-value-not-changing-in-stepper
 /*
 void main() => runApp(MyApp());
@@ -31,84 +35,52 @@ class AppointmentCity extends StatefulWidget {
 enum Cities { moncton, sackville, bathurst, woodstock, edmundston }
 
 class _AppointmentCityState extends State<AppointmentCity> {
-  Cities? _character = Cities.moncton;
+  final dbHelper = DBHelper.instance;
+
+  List<String> _cities = [];
 
   // List<Step> get _steps => <Step>[_lastQualificationStep()];
   // int _currentStep = 0;
   // bool _isStepsCompleted = false;
 
-  @override
-  void initState() {
-    super.initState();
-    //_steps.add(_lastQualificationStep());
+  void _queryCitiesAvailable() async {
+    dbHelper.database;
+    final allCities = await dbHelper.queryCitiesAvailable();
+    debugPrint('query cities with schedule available');
+    _cities.clear(); // clearing cities
+    for (var row in allCities) {
+      _cities.add(row['location'].toString());
+    }
+    setState(() {});
+    allCities.forEach(print);
   }
 
   @override
+  void initState() {
+    super.initState();
+    _queryCitiesAvailable();
+  }
+
+  int selectedIndex = -1;
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        const FancyText(ftext: 'Choose City', style: Style.header),
-        ListTile(
-          title: const Text('Moncton (Available)'),
-          leading: Radio<Cities>(
-            value: Cities.moncton,
-            groupValue: _character,
-            onChanged: (Cities? value) {
+    return ListView.builder(
+      itemCount: _cities.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListTile(
+            title: Text(_cities[index]),
+            tileColor: selectedIndex == index ? Colors.blue : null,
+            onTap: () {
               setState(() {
-                _character = value;
+                selectedIndex = index;
               });
             },
           ),
-        ),
-        ListTile(
-          title: const Text('Sackville (Not available)'),
-          leading: Radio<Cities>(
-            value: Cities.sackville,
-            groupValue: _character,
-            onChanged: (Cities? value) {
-              setState(() {
-                _character = value;
-              });
-            },
-          ),
-        ),
-        ListTile(
-          title: const Text('Bathurst (Not available)'),
-          leading: Radio<Cities>(
-            value: Cities.bathurst,
-            groupValue: _character,
-            onChanged: (Cities? value) {
-              setState(() {
-                _character = value;
-              });
-            },
-          ),
-        ),
-        ListTile(
-          title: const Text('Woodstock (Available)'),
-          leading: Radio<Cities>(
-            value: Cities.woodstock,
-            groupValue: _character,
-            onChanged: (Cities? value) {
-              setState(() {
-                _character = value;
-              });
-            },
-          ),
-        ),
-        ListTile(
-          title: const Text('Edmundston (Available)'),
-          leading: Radio<Cities>(
-            value: Cities.edmundston,
-            groupValue: _character,
-            onChanged: (Cities? value) {
-              setState(() {
-                _character = value;
-              });
-            },
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 }

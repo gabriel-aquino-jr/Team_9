@@ -139,7 +139,15 @@ class DBHelper {
     //
     // In Order to parse times we must use ISO Format "2012-02-27 13:27:00"
     //
-    await db.rawInsert('''
+
+    // Genetate events for 60 days in the future
+    String IdGenerator() {
+      final now = DateTime.now();
+      return now.microsecondsSinceEpoch.toString();
+    }
+
+    // LETS BUILD LOTS OF EVENTS!
+    String schedulesSql = '''
             INSERT INTO schedules 
             (
             scheduleID,          
@@ -149,51 +157,250 @@ class DBHelper {
             location
             )
             VALUES
-            (
-              1,
-              '2022-07-01',
-              '12:30:00',
+                        (
+              1654803407812912,
+              '2022-06-09',
+              '08:30:00',
               'Road',
               'Moncton'
-            )
-    ''');
-    await db.rawInsert('''
-            INSERT INTO schedules 
+            ),
             (
-            scheduleID,          
-            date,
-            time,
-            type,
-            location
-            )
-            VALUES
+              1654803407813655,
+              '2022-06-09',
+              '10:30:00',
+              'Road',
+              'Moncton'
+            ),
             (
-              2,
+              1654803407813756,
+              '2022-06-09',
+              '13:30:00',
+              'Road',
+              'Moncton'
+            ),            (
+              1654803407813921,
               '2022-06-10',
-              '12:30:00',
+              '08:30:00',
               'Road',
               'Moncton'
-            )
-    ''');
-    await db.rawInsert('''
-            INSERT INTO schedules 
+            ),
             (
-            scheduleID,          
-            date,
-            time,
-            type,
-            location
-            )
-            VALUES
-            (
-              3,
+              1654803407814015,
               '2022-06-10',
-              '11:30:00',
+              '10:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407814359,
+              '2022-06-10',
+              '13:30:00',
+              'Road',
+              'Moncton'
+            ),            (
+              1654803407814443,
+              '2022-06-11',
+              '08:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407814475,
+              '2022-06-11',
+              '10:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407814502,
+              '2022-06-11',
+              '13:30:00',
+              'Road',
+              'Moncton'
+            ),            (
+              1654803407814551,
+              '2022-06-12',
+              '08:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407814582,
+              '2022-06-12',
+              '10:30:00',
+              'Road',
+              'Woodstock'
+            ),
+            (
+              1654803407814605,
+              '2022-06-12',
+              '13:30:00',
+              'Road',
+              'Edmundston'
+            ),            (
+              1654803407814649,
+              '2022-06-13',
+              '08:30:00',
+              'Road',
+              'Woodstock'
+            ),
+            (
+              1654803407814680,
+              '2022-06-13',
+              '10:30:00',
+              'Road',
+              'Bathurst'
+            ),
+            (
+              1654803407814701,
+              '2022-06-13',
+              '13:30:00',
+              'Road',
+              'Bathurst'
+            ),            (
+              1654803407814740,
+              '2022-06-14',
+              '08:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407814769,
+              '2022-06-14',
+              '10:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407814790,
+              '2022-06-14',
+              '13:30:00',
+              'Road',
+              'Moncton'
+            ),            (
+              1654803407814829,
+              '2022-06-15',
+              '08:30:00',
+              'Road',
+              'Bathurst'
+            ),
+            (
+              1654803407814860,
+              '2022-06-15',
+              '10:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407814888,
+              '2022-06-15',
+              '13:30:00',
+              'Road',
+              'Moncton'
+            ),            (
+              1654803407814947,
+              '2022-06-16',
+              '08:30:00',
+              'Road',
+              'Bathurst'
+            ),
+            (
+              1654803407815016,
+              '2022-06-16',
+              '10:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407815048,
+              '2022-06-16',
+              '13:30:00',
+              'Road',
+              'Moncton'
+            ),            (
+              1654803407815860,
+              '2022-06-17',
+              '08:30:00',
+              'Road',
+              'Sackville'
+            ),
+            (
+              1654803407815915,
+              '2022-06-17',
+              '10:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407815943,
+              '2022-06-17',
+              '13:30:00',
+              'Road',
+              'Sackville'
+            ),            (
+              1654803407816089,
+              '2022-06-18',
+              '08:30:00',
+              'Road',
+              'Sackville'
+            ),
+            (
+              1654803407816134,
+              '2022-06-18',
+              '10:30:00',
+              'Road',
+              'Moncton'
+            ),
+            (
+              1654803407816164,
+              '2022-06-18',
+              '13:30:00',
               'Road',
               'Moncton'
             )
-    ''');
-    await db.rawInsert('''INSERT INTO appointments 
+        ''';
+
+    // Map newEvents = List<DateTime>.generate(
+    //     10,
+    //     (i) => DateTime.utc(
+    //             DateTime.now().year, DateTime.now().month, DateTime.now().day)
+    //         .add(Duration(days: i))).asMap();
+
+    // // Build SQL String
+    // newEvents.forEach((index, element) => {
+    //       schedulesSql += '''
+    //         (
+    //           ${IdGenerator()},
+    //           '${element.year}-${element.month.toString().length == 0 ? element.month : ("0" + element.month.toString())}-${element.day.toString().length == 1 ? element.day : ("0" + element.day.toString())}',
+    //           '08:30:00',
+    //           'Road',
+    //           'Moncton'
+    //         ),
+    //         (
+    //           ${IdGenerator()},
+    //           '${element.year}-${element.month.toString().length == 0 ? element.month : ("0" + element.month.toString())}-${element.day.toString().length == 1 ? element.day : ("0" + element.day.toString())}',
+    //           '10:30:00',
+    //           'Road',
+    //           'Moncton'
+    //         ),
+    //         (
+    //           ${IdGenerator()},
+    //           '${element.year}-${element.month.toString().length == 0 ? element.month : ("0" + element.month.toString())}-${element.day.toString().length == 1 ? element.day : ("0" + element.day.toString())}',
+    //           '13:30:00',
+    //           'Road',
+    //           'Moncton'
+    //         ),'''
+    //     });
+    // // we have to delete the last comma
+    // schedulesSql = schedulesSql.substring(0, schedulesSql.length - 1);
+
+    // Insert Scheduel SqlString
+    int lastRowSchedule = await db.rawInsert(schedulesSql);
+    print(lastRowSchedule);
+
+    // Insert Appointments
+
+    int lastrowAppt = await db.rawInsert('''INSERT INTO appointments 
             (
             customerID,
             scheduleID
@@ -201,9 +408,10 @@ class DBHelper {
             VALUES
             (
               1,
-              1
+              1654803407816164
             )
     ''');
+    print(lastrowAppt);
   }
 
   // ***********************************************************************
@@ -256,6 +464,29 @@ class DBHelper {
   // ***********************************************************************
   //                     Schedules table methods
   // ***********************************************************************
+
+  // Query number of cities
+  Future<int> queryQtyCities() async {
+    Database db = await instance.database;
+    final resultSet = await db.rawQuery('''
+        SELECT
+          count(location)
+        FROM Schedules
+        ''');
+    return resultSet.length;
+  }
+
+  // Query cities with schedules available
+  Future<List<Map<String, dynamic>>> queryCitiesAvailable() async {
+    Database db = await instance.database;
+    final resultSet = await db.rawQuery('''
+        SELECT
+          distinct location
+        FROM schedules
+        ''');
+    return resultSet;
+  }
+
   // Insert records at the table
   Future<int> insertSchedule(Schedules schedules) async {
     Database db = await instance.database;

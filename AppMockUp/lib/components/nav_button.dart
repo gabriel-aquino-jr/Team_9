@@ -49,7 +49,12 @@ class NavBtn extends StatelessWidget {
             (callback != null)
                 ? this.callback!()
                 : Navigator.pushNamed(context, route);
-            Navigator.pushNamed(context, route);
+            //Navigator.pushNamed(context, route);
+
+            // (callback != null)
+            //     ? this.callback!()
+            //     : Navigator.pushNamed(context, route);
+            // Navigator.pushNamed(context, route);
           },
           child: Text(
             label,
