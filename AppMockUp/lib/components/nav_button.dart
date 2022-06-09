@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mockup/components/textbox.dart';
 import 'package:mockup/utilities/palette.dart';
 
@@ -6,13 +10,18 @@ enum BtnType { link, outline }
 
 class NavBtn extends StatelessWidget {
   const NavBtn(
-      {Key? key, this.btnType, required this.label, required this.route})
+      {Key? key,
+      this.btnType,
+      required this.label,
+      required this.route,
+      this.callback})
       // Above is your class constructor.
       : super(key: key);
 
   final BtnType? btnType; // These are the fields filled by the constructor.
   final String label;
   final String route;
+  final VoidCallback? callback;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +46,9 @@ class NavBtn extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: OutlinedButton(
           onPressed: () {
+            (callback == null)
+                ? this.callback!()
+                : Navigator.pushNamed(context, route);
             Navigator.pushNamed(context, route);
           },
           child: Text(

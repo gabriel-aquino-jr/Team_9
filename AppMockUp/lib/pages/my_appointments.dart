@@ -65,7 +65,10 @@ class _MyAppointmentsState extends State<MyAppointments> {
                 SizedBox(
                   height: 40,
                 ),
-                NavBtn(label: 'New', route: NewAppointment.route)
+                NavBtn(
+                  label: 'New',
+                  route: NewAppointment.route,
+                )
               ],
             )
           ],

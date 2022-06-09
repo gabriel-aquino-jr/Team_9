@@ -142,7 +142,10 @@ class _LoginDemoState extends State<LoginDemo> {
                 btnType: BtnType.link,
                 label: 'Forgot Password',
                 route: ForgotPassword.route),
-            NavBtn(label: 'Login', route: MyAppointments.route),
+            NavBtn(
+                label: 'Login',
+                route: MyAppointments.route,
+                callback: _validateLogin),
             ElevatedButton(
                 onPressed: () => _validateLogin(), child: const Text('login2')),
             const SizedBox(
