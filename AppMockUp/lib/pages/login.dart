@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mockup/components/calendar.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
 import 'package:mockup/pages/create_account.dart';
@@ -19,7 +20,6 @@ class _LoginDemoState extends State<LoginDemo> {
   final dbHelper = DBHelper.instance;
 
   Future<void> _validateLogin() async {
-    dbHelper.insertSampleCustomer();
     if (await dbHelper.authLogin(_email, _password)) {
       debugPrint('login ok!');
     } else {
@@ -146,28 +146,22 @@ class _LoginDemoState extends State<LoginDemo> {
                 label: 'Login',
                 route: MyAppointments.route,
                 callback: _validateLogin),
-            ElevatedButton(
-                onPressed: () => _validateLogin(), child: const Text('login2')),
             const SizedBox(
-              height: 100,
+              height: 50,
             ),
+            ElevatedButton(
+                onPressed: () {
+                  dbhelper.insertSampleCustomer();
+                },
+                child: Text("Insert Dummy Data")),
             NavBtn(
               btnType: BtnType.link,
               label: 'New User? Create Account',
               route: CreateAccount.route,
             ),
-            ElevatedButton(onPressed: () {
-            _InsertData();
-
-            } 
-            , child: Text("Insert Dummy Data"))
           ],
         ),
       ),
     );
-  }
-  
-  void _InsertData() {
-    dbHelper.
   }
 }

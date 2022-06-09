@@ -21,40 +21,16 @@ class Event {
 final dbhelper = DBHelper.instance;
 
 // Set initial dates
-final calToday = DateTime.now();
-final calFirstDay = DateTime(calToday.year, calToday.month - 2, calToday.day);
-final calLastDay = DateTime(calToday.year, calToday.month + 5, calToday.day);
+// final calToday = DateTime.now();
+// final calFirstDay = DateTime(calToday.year, calToday.month - 2, calToday.day);
+// final calLastDay = DateTime(calToday.year, calToday.month + 5, calToday.day);
 
-final calEvents = LinkedHashMap<DateTime, List<Event>>(
-  equals: isSameDay,
-  hashCode: getHashCode,
-)..addAll(_calEventSource);
+// final calEvents = LinkedHashMap<DateTime, List<Event>>(
+//   equals: isSameDay,
+//   hashCode: getHashCode,
+// )..addAll(_calEventSource);
 
-final _calEventSource = Map<DateTime, List<Event>>.fromIterable(_events);
-
-// Query Events
-List<Schedules> _schedules = [];
-void _queryAllEvents() async {
-  dbhelper.database;
-  final allRows = await dbhelper.queryAllRows(dbhelper.database);
-  debugPrint('query all employee rows:');
-  for (var row in allRows) {
-    _schedules.add(Schedules.fromMap(row));
-  }
-  _toCalenderEvents();
-  allRows.forEach(print);
-}
-
-List _events = [];
-void _toCalenderEvents() {
-  for (var s in _schedules) {
-    final entry = <DateTime, Event>{
-      s.dateTime!: Event("${s.type} - ${s.location}")
-    };
-
-    _events.add(entry.entries);
-  }
-}
+// final _calEventSource = Map<DateTime, List<Event>>.fromIterable(_events);
 
 // final _calEventSource = Map.fromIterable(List.generate(50, (index) => index),
 //     key: (item) => DateTime.utc(calFirstDay.year, calFirstDay.month, item * 5),
@@ -90,11 +66,48 @@ class _CalendarState extends State<Calendar> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
+// Connect to database
+  final dbhelper = DBHelper.instance;
+
+// Set initial dates
+  final calToday = DateTime.now();
+  late final calFirstDay =
+      DateTime(calToday.year, calToday.month - 2, calToday.day);
+  late final calLastDay =
+      DateTime(calToday.year, calToday.month + 5, calToday.day);
+
+// Query Events
+  late final calEvents = LinkedHashMap<DateTime, List<Event>>(
+    equals: isSameDay,
+    hashCode: getHashCode,
+  )..addAll(_calEventSource);
+
+  List<Schedules> _schedules = [];
+  void _queryAllEvents() async {
+    dbhelper.database;
+    final allRows = await dbhelper.queryAllRows("schedules");
+    debugPrint('query all employee rows:');
+    for (var row in allRows) {
+      _schedules.add(Schedules.fromMap(row));
+    }
+    _toCalenderEvents();
+    allRows.forEach(print);
+  }
+
+  Map<DateTime, List<Event>> _calEventSource = {};
+  void _toCalenderEvents() {
+    for (var s in _schedules) {
+      List<Event> events = [Event("${s.type} - ${s.location}")];
+      _calEventSource[s.dateTime!] = events;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _selectedDay = _focusedDay;
-
+    _queryAllEvents();
+    print("CalEvents: " + calEvents.entries.toString());
     //Selects events for today
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
@@ -115,7 +128,7 @@ class _CalendarState extends State<Calendar> {
     return Column(
       children: [
         TableCalendar(
-          //iniat display range
+          //initial display range
           firstDay: calFirstDay,
           lastDay: calLastDay,
           focusedDay: calToday,
@@ -157,10 +170,11 @@ class _CalendarState extends State<Calendar> {
           },
         ),
         ElevatedButton(
-          child: const Text('Clear selection'),
+          child: const Text('Go To Today'),
           onPressed: () {
             setState(() {
               _selectedDay = calToday;
+              print("CalEvents " + calEvents.toString());
               // _selectedEvents.value = [];
             });
           },

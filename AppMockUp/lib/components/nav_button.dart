@@ -46,7 +46,7 @@ class NavBtn extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: OutlinedButton(
           onPressed: () {
-            (callback == null)
+            (callback != null)
                 ? this.callback!()
                 : Navigator.pushNamed(context, route);
             Navigator.pushNamed(context, route);

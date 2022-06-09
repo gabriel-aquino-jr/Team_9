@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mockup/components/nav_button.dart';
 //import 'package:collection/collection.dart';
-//import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/page_header.dart';
 //import 'package:mockup/components/textbox.dart';
 import 'package:mockup/database/db_helper.dart';
@@ -53,35 +53,40 @@ class _MyAppointmentsState extends State<MyAppointments> {
       body: ListView.builder(
         itemCount: _appointments.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                debugPrint('Card #$index was tapped');
-              },
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text('${_appointments[index].date}'),
-                      Text('- ${_appointments[index].time}'),
-                      Text('- ${_appointments[index].type}'),
-                      Text('- ${_appointments[index].location}'),
-                      const Spacer(),
-                      IconButton(
-                        icon: const Icon(Icons.details_outlined),
-                        color: Colors.blue,
-                        onPressed: () {
-                          debugPrint('go to the appointment details');
-                        },
-                      )
-                    ],
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    debugPrint('Card #$index was tapped');
+                  },
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text('${_appointments[index].date}'),
+                          Text('- ${_appointments[index].time}'),
+                          Text('- ${_appointments[index].type}'),
+                          Text('- ${_appointments[index].location}'),
+                          const Spacer(),
+                          IconButton(
+                            icon: const Icon(Icons.details_outlined),
+                            color: Colors.blue,
+                            onPressed: () {
+                              debugPrint('go to the appointment details');
+                            },
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+              NavBtn(label: 'New', route: NewAppointment.route),
+            ],
           );
         },
       ),

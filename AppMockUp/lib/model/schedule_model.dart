@@ -18,7 +18,7 @@ class Schedules {
     time = map['time'];
     type = map['type'];
     location = map['location'];
-    dateTime = DateTime.parse(date! + time!);
+    dateTime = DateTime.parse(date! + " " + time!);
   }
 
   Map<String, dynamic> toMap() {
