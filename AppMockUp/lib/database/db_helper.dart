@@ -229,34 +229,34 @@ class DBHelper {
               '2022-06-12',
               '10:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),
             (
               1654803407814605,
               '2022-06-12',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Edmundston'
             ),            (
               1654803407814649,
               '2022-06-13',
               '08:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),
             (
               1654803407814680,
               '2022-06-13',
               '10:30:00',
               'Road',
-              'Moncton'
+              'Bathurst'
             ),
             (
               1654803407814701,
               '2022-06-13',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Bathurst'
             ),            (
               1654803407814740,
               '2022-06-14',
@@ -282,7 +282,7 @@ class DBHelper {
               '2022-06-15',
               '08:30:00',
               'Road',
-              'Moncton'
+              'Bathurst'
             ),
             (
               1654803407814860,
@@ -302,7 +302,7 @@ class DBHelper {
               '2022-06-16',
               '08:30:00',
               'Road',
-              'Moncton'
+              'Bathurst'
             ),
             (
               1654803407815016,
@@ -322,7 +322,7 @@ class DBHelper {
               '2022-06-17',
               '08:30:00',
               'Road',
-              'Moncton'
+              'Sackville'
             ),
             (
               1654803407815915,
@@ -336,13 +336,13 @@ class DBHelper {
               '2022-06-17',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Sackville'
             ),            (
               1654803407816089,
               '2022-06-18',
               '08:30:00',
               'Road',
-              'Moncton'
+              'Sackville'
             ),
             (
               1654803407816134,
@@ -464,6 +464,29 @@ class DBHelper {
   // ***********************************************************************
   //                     Schedules table methods
   // ***********************************************************************
+
+  // Query number of cities
+  Future<int> queryQtyCities() async {
+    Database db = await instance.database;
+    final resultSet = await db.rawQuery('''
+        SELECT
+          count(location)
+        FROM Schedules
+        ''');
+    return resultSet.length;
+  }
+
+  // Query cities with schedules available
+  Future<List<Map<String, dynamic>>> queryCitiesAvailable() async {
+    Database db = await instance.database;
+    final resultSet = await db.rawQuery('''
+        SELECT
+          distinct location
+        FROM schedules
+        ''');
+    return resultSet;
+  }
+
   // Insert records at the table
   Future<int> insertSchedule(Schedules schedules) async {
     Database db = await instance.database;
