@@ -30,42 +30,43 @@ final calEvents = LinkedHashMap<DateTime, List<Event>>(
   hashCode: getHashCode,
 )..addAll(_calEventSource);
 
-// final _calEventSource = Map<DateTime, List<Event>>.fromIterable(_events);
+final _calEventSource = Map<DateTime, List<Event>>.fromIterable(_events);
 
 // Query Events
-// List<Schedules> _schedules = [];
-// void _queryAllEvents() async {
-//   dbhelper.database;
-//   final allRows = await dbhelper.queryAllRows(dbhelper.database);
-//   debugPrint('query all employee rows:');
-//   for (var row in allRows) {
-//     _schedules.add(Schedules.fromMap(row));
-//   }
-//   _toCalenderEvents();
-//   allRows.forEach(print);
-// }
+List<Schedules> _schedules = [];
+void _queryAllEvents() async {
+  dbhelper.database;
+  final allRows = await dbhelper.queryAllRows(dbhelper.database);
+  debugPrint('query all employee rows:');
+  for (var row in allRows) {
+    _schedules.add(Schedules.fromMap(row));
+  }
+  _toCalenderEvents();
+  allRows.forEach(print);
+}
 
-// List _events = [];
-// void _toCalenderEvents() {
-//   for (var s in _schedules) {
-//     final entry = <DateTime, Event>{
-//       s.dateTime!: Event("${s.type} - ${s.location}")
-//     };
+List _events = [];
+void _toCalenderEvents() {
+  for (var s in _schedules) {
+    final entry = <DateTime, Event>{
+      s.dateTime!: Event("${s.type} - ${s.location}")
+    };
 
-//     _events.add(entry.entries);
-//   }
-// }
+    _events.add(entry.entries);
+  }
+}
 
-final _calEventSource = Map.fromIterable(List.generate(50, (index) => index),
-    key: (item) => DateTime.utc(calFirstDay.year, calFirstDay.month, item * 5),
-    value: (item) => List.generate(
-        item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
-  ..addAll({
-    calToday: [
-      const Event('Today\'s Event 1'),
-      const Event('Today\'s Event 2'),
-    ],
-  });
+// final _calEventSource = Map.fromIterable(List.generate(50, (index) => index),
+//     key: (item) => DateTime.utc(calFirstDay.year, calFirstDay.month, item * 5),
+//     value: (item) => List.generate(
+//         item % 4 + 1, (index) => Event('Event $item | ${index + 1}')))
+//   ..addAll({
+//     calToday: [
+//       const Event('Today\'s Event 1'),
+//       const Event('Today\'s Event 2'),
+//     ],
+//   });
+
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;
 }

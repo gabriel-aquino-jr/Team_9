@@ -153,9 +153,18 @@ class _LoginDemoState extends State<LoginDemo> {
               label: 'New User? Create Account',
               route: CreateAccount.route,
             ),
+            ElevatedButton(onPressed: () {
+            _InsertData();
+
+            } 
+            , child: Text("Insert Dummy Data"))
           ],
         ),
       ),
     );
+  }
+  
+  void _InsertData() {
+    dbHelper.
   }
 }

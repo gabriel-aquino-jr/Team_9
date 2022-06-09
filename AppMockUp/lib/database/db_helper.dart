@@ -165,6 +165,7 @@ class DBHelper {
     ''');
   }
 
+<<<<<<< Updated upstream
   // ***********************************************************************
   //                     Appointments table methods
   // ***********************************************************************
@@ -181,10 +182,29 @@ class DBHelper {
             (
               ${customerId.text},
               ${scheduleId.text}            
+=======
+  Future<int> insertSampleShedule() async {
+    Database db = await instance.database;
+    db.rawDelete('DELETE FROM customers');
+    debugPrint('Customers records deleted');
+    debugPrint('Sample customer Inserted');
+    return await db.rawInsert('''INSERT INTO Schedules 
+            (
+            fullName,
+            email,
+            password
+            )
+            VALUES
+            (
+              'John Doe',
+            'jdoe@ca.ca',
+            '123'
+>>>>>>> Stashed changes
             )
     ''');
   }
 
+<<<<<<< Updated upstream
   // Query all appointments from a customer
   Future<List<Map<String, dynamic>>> queryMyAppointments(customerId) async {
     Database db = await instance.database;
@@ -201,6 +221,8 @@ class DBHelper {
         ''');
     return resultSet;
   }
+=======
+>>>>>>> Stashed changes
 /*
   // We are assuming here that the id column the map is set. The other column
   // values will be used to update the row.
