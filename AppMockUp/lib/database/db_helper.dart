@@ -33,10 +33,24 @@ class DBHelper {
   // Create the database table
   Future _onCreate(Database db, int version) async {
     await db.execute('''CREATE TABLE customers(
-            customerId INTEGER PRIMARY KEY AUTOINCREMENT,
+            customerId INTEGER PRIMARY KEY,
             fullName TEXT NOT NULL,
             email TEXT NOT NULL,
             password TEXT NOT NULL
+        )
+    ''');
+    await db.execute('''CREATE TABLE appointments(
+            customerId INTEGER NOT NULL,
+            scheduleId INTEGER NOT NULL,
+            PRIMARY KEY(customerId, scheduleId)
+        )
+    ''');
+    await db.execute('''CREATE TABLE schedules(
+            scheduleId INTEGER PRIMARY KEY,
+            date TEXT NOT NULL,
+            time TEXT NOT NULL,
+            type TEXT NOT NULL,
+            location TEXT NOT NULL
         )
     ''');
     debugPrint('Database $db created');
@@ -99,26 +113,94 @@ class DBHelper {
     return (loginFound.isNotEmpty);
   }
 
-  Future<int> insertSampleCustomer() async {
+  Future<void> insertSampleCustomer() async {
     Database db = await instance.database;
+    db.rawDelete('DELETE FROM appointments');
+    db.rawDelete('DELETE FROM schedules');
     db.rawDelete('DELETE FROM customers');
     debugPrint('Customers records deleted');
     debugPrint('Sample customer Inserted');
-    return await db.rawInsert('''INSERT INTO customers 
+    await db.rawInsert('''INSERT INTO customers 
             (
+            customerID,          
             fullName,
             email,
             password
             )
             VALUES
             (
+              1,
               'John Doe',
             'jdoe@ca.ca',
             '123'
             )
     ''');
+    await db.rawInsert('''INSERT INTO schedules 
+            (
+            scheduleID,          
+            date,
+            time,
+            type,
+            location
+            )
+            VALUES
+            (
+              1,
+              '07/01/2022',
+              '12:30PM',
+              'Road',
+              'Moncton'
+            )
+    ''');
+    await db.rawInsert('''INSERT INTO appointments 
+            (
+            customerID,
+            scheduleID
+            )
+            VALUES
+            (
+              1,
+              1
+            )
+    ''');
   }
 
+  // ***********************************************************************
+  //                     Appointments table methods
+  // ***********************************************************************
+
+  Future<int> insertAppointment(customerId, scheduleId) async {
+    Database db = await instance.database;
+    debugPrint('Inserting appointment');
+    return await db.rawInsert('''INSERT INTO appointments
+            (
+            customerID,
+            scheduleID
+            )
+            VALUES
+            (
+              ${customerId.text},
+              ${scheduleId.text}            
+            )
+    ''');
+  }
+
+  // Query all appointments from a customer
+  Future<List<Map<String, dynamic>>> queryMyAppointments(customerId) async {
+    Database db = await instance.database;
+    final resultSet = await db.rawQuery('''
+        SELECT
+          date,
+          time,
+          type,
+          location
+        FROM Schedules
+        INNER JOIN Appointments
+        ON Schedules.scheduleID = Appointments.scheduleID
+        WHERE Appointments.customerID = $customerId
+        ''');
+    return resultSet;
+  }
 /*
   // We are assuming here that the id column the map is set. The other column
   // values will be used to update the row.

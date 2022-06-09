@@ -1,11 +1,14 @@
 //import 'package:mockup/database/db_helper.dart';
 
+import 'dart:collection';
+
 class Schedules {
   int? scheduleId;
   String? date;
   String? time;
   String? type;
   String? location;
+  DateTime? dateTime;
 
   Schedules(this.scheduleId, this.date, this.time, this.type, this.location);
 
@@ -15,6 +18,7 @@ class Schedules {
     time = map['time'];
     type = map['type'];
     location = map['location'];
+    dateTime = DateTime.parse(date! + time!);
   }
 
   Map<String, dynamic> toMap() {
