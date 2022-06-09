@@ -100,7 +100,7 @@ class _CalendarState extends State<Calendar> {
     )..addAll(_calEventSource);
 
     setState(() {});
-    allRows.forEach(print);
+    // allRows.forEach(print);
   }
 
 //  Step 2: Format to Calendar Type
