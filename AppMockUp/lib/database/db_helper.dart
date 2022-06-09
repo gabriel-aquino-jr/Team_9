@@ -158,7 +158,7 @@ class DBHelper {
             )
     ''');
     await db.rawInsert('''
-            INSERT schedules 
+            INSERT INTO schedules 
             (
             scheduleID,          
             date,
@@ -176,7 +176,7 @@ class DBHelper {
             )
     ''');
     await db.rawInsert('''
-            INSERT schedules 
+            INSERT INTO schedules 
             (
             scheduleID,          
             date,
@@ -188,7 +188,7 @@ class DBHelper {
             (
               3,
               '2022-06-10',
-              '12:30:00',
+              '11:30:00',
               'Road',
               'Moncton'
             )
