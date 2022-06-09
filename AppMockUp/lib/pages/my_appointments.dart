@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mockup/components/page_header.dart';
 //import 'package:mockup/components/textbox.dart';
 import 'package:mockup/database/db_helper.dart';
-import 'package:mockup/model/appointment_model.dart';
+import 'package:mockup/model/myappointment_model.dart';
 import 'package:mockup/pages/new_appointment.dart';
 import 'package:mockup/pages/view_Appointment.dart';
 import 'package:mockup/utilities/palette.dart';
@@ -26,7 +26,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
   final dbHelper = DBHelper.instance;
 
   // The following list is already sorted by id
-  List<Appointments> _appointments = [];
+  List<MyAppointmentsList> _appointments = [];
 
   void _queryMyAppointments() async {
     dbHelper.database;
@@ -34,7 +34,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
     debugPrint('query appointments from customer');
     _appointments.clear(); // clearing employees left over
     for (var row in allRows) {
-      _appointments.add(Appointments.fromMap(row));
+      _appointments.add(MyAppointmentsList.fromMap(row));
     }
     setState(() {});
     allRows.forEach(print);
@@ -65,8 +65,10 @@ class _MyAppointmentsState extends State<MyAppointments> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('${_appointments[index].customerId}'),
-                      Text(' ${_appointments[index].scheduleId}'),
+                      Text('${_appointments[index].date}'),
+                      Text('- ${_appointments[index].time}'),
+                      Text('- ${_appointments[index].type}'),
+                      Text('- ${_appointments[index].location}'),
                       const Spacer(),
                       IconButton(
                         icon: const Icon(Icons.details_outlined),
