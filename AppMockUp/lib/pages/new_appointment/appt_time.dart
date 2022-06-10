@@ -55,15 +55,46 @@ class _AppointmentTimeState extends State<AppointmentTime> {
     setState(() {});
     allRows.forEach(print);
   }
+
   // List<Step> get _steps => <Step>[_lastQualificationStep()];
   // int _currentStep = 0;
   // bool _isStepsCompleted = false;
+  TimeAvailable GetTimeAvailableFromTxt() {
+    if (AppointmentInfo.time == '08:30:00') {
+      return TimeAvailable.at830AM;
+    } else if (AppointmentInfo.time == '08:30:00') {
+      return TimeAvailable.at1030AM;
+    } else if (AppointmentInfo.time == '08:30:00') {
+      return TimeAvailable.at100PM;
+    } else {
+      return TimeAvailable.at300PM;
+    }
+  }
+
+  String GetTxtFromTimeAvailable() {
+    if (_character == TimeAvailable.at830AM) {
+      return "08:30:00";
+    } else if (_character == TimeAvailable.at1030AM) {
+      return "10:30:00";
+    } else if (_character == TimeAvailable.at100PM) {
+      return "13:00:00";
+    } else {
+      return "15:00:00";
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    _character = GetTimeAvailableFromTxt();
     _queryAllEvents();
     //_steps.add(_lastQualificationStep());
+  }
+
+  @override
+  void dispose() {
+    AppointmentInfo.time = GetTxtFromTimeAvailable();
+    super.dispose();
   }
 
   @override
