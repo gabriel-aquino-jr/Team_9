@@ -88,7 +88,8 @@ class _CalendarState extends State<Calendar> {
   List<Schedules> _schedules = [];
   void _queryAllEvents() async {
     dbhelper.database;
-    final allRows = await dbhelper.queryAllRows("schedules");
+    final allRows = await dbhelper.queryDatesAvailable(
+        AppointmentInfo.type, AppointmentInfo.city);
     debugPrint('query all employee rows:');
     for (var row in allRows) {
       _schedules.add(Schedules.fromMap(row));
@@ -101,7 +102,7 @@ class _CalendarState extends State<Calendar> {
     )..addAll(_calEventSource);
 
     setState(() {});
-    // allRows.forEach(print);
+    allRows.forEach(print);
   }
 
 //  Step 2: Format to Calendar Type
@@ -128,12 +129,12 @@ class _CalendarState extends State<Calendar> {
   @override
   void dispose() {
     _selectedEvents.dispose();
+    AppointmentInfo.date = _selectedDay.toString().substring(0, 10);
     super.dispose();
   }
 
   @override
   List<Event> _getEventsForDay(DateTime day) {
-    AppointmentInfo.date = day.toString().substring(0, 10);
     return calEvents[day] ?? [];
   }
 

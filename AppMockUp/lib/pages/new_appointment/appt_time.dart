@@ -45,7 +45,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
     }
 
     _schedules.forEach((row) {
-      if (row.date == "2022-06-10") {
+      if (row.date == AppointmentInfo.date) {
         times.add(row.time);
       }
     });
@@ -61,9 +61,9 @@ class _AppointmentTimeState extends State<AppointmentTime> {
   TimeAvailable GetTimeAvailableFromTxt() {
     if (AppointmentInfo.time == '08:30:00') {
       return TimeAvailable.at830AM;
-    } else if (AppointmentInfo.time == '08:30:00') {
+    } else if (AppointmentInfo.time == '10:30:00') {
       return TimeAvailable.at1030AM;
-    } else if (AppointmentInfo.time == '08:30:00') {
+    } else if (AppointmentInfo.time == '13:00:00') {
       return TimeAvailable.at100PM;
     } else {
       return TimeAvailable.at300PM;
@@ -85,8 +85,8 @@ class _AppointmentTimeState extends State<AppointmentTime> {
   @override
   void initState() {
     super.initState();
-    _character = GetTimeAvailableFromTxt();
     _queryAllEvents();
+    _character = GetTimeAvailableFromTxt();
     //_steps.add(_lastQualificationStep());
   }
 
