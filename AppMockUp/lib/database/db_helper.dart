@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mockup/model/customer_model.dart';
@@ -438,6 +439,23 @@ class DBHelper {
               ${scheduleId.text}            
             )
     ''');
+  }
+
+  // Query all appointments from a customer
+  Future<List<Map<String, dynamic>>> queryGetScheduleID(
+      String date, String time, String type, String location) async {
+    Database db = await instance.database;
+    final resultSet = await db.rawQuery('''
+        SELECT
+          TOP 1 scheduleID
+        FROM Schedules
+        WHERE 
+          date = '${date}' AND
+          time = '${time}' AND
+          type = '${type}' AND
+          location = '${location}
+        ''');
+    return resultSet;
   }
 
   // Query all appointments from a customer

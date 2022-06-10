@@ -58,7 +58,8 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
           // Tab bar displays the navigation for the tabs. The index of tabbar will be used in the TabBarView.
           child: TabBar(
             labelStyle: const TextStyle(
-              fontSize: 18,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
               color: Palette.lightBlue,
               shadows: [
                 Shadow(
