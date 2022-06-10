@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mockup/components/selection_box.dart';
 import 'package:mockup/database/db_helper.dart';
 import 'package:mockup/main.dart';
+import 'package:mockup/model/global.dart';
 import 'package:mockup/model/schedule_model.dart';
 import 'package:mockup/utilities/palette.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -115,7 +116,9 @@ class _CalendarState extends State<Calendar> {
   @override
   void initState() {
     super.initState();
-    _selectedDay = _focusedDay;
+    (AppointmentInfo.date == "")
+        ? _selectedDay = _focusedDay
+        : _selectedDay = DateTime.parse(AppointmentInfo.date);
     _queryAllEvents();
     print("CalEvents: " + calEvents.entries.toString());
     //Selects events for today
@@ -130,6 +133,7 @@ class _CalendarState extends State<Calendar> {
 
   @override
   List<Event> _getEventsForDay(DateTime day) {
+    AppointmentInfo.date = day.toString().substring(0, 10);
     return calEvents[day] ?? [];
   }
 

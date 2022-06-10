@@ -3,6 +3,7 @@ import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/pages/new_appointment/appt_confirmed.dart';
 import 'package:mockup/components/textbox.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../model/global.dart';
 
 class AppointmentReview extends StatelessWidget {
   const AppointmentReview({Key? key}) : super(key: key);
@@ -21,11 +22,15 @@ class AppointmentReview extends StatelessWidget {
               direction: Axis.vertical,
               spacing: 20,
               children: [
-                const FancyText(ftext: 'Test Type: Written', style: Style.base),
-                const FancyText(ftext: 'City: Sackville', style: Style.base),
-                const FancyText(
-                    ftext: 'Date: June 03, 2022', style: Style.base),
-                const FancyText(ftext: 'Time: 01:30PM', style: Style.base),
+                FancyText(
+                    ftext: 'Test Type: ${AppointmentInfo.type}',
+                    style: Style.base),
+                FancyText(
+                    ftext: 'City: ${AppointmentInfo.city}', style: Style.base),
+                FancyText(
+                    ftext: 'Date: ${AppointmentInfo.date}', style: Style.base),
+                FancyText(
+                    ftext: 'Time: ${AppointmentInfo.time}', style: Style.base),
               ],
             ),
             SizedBox(

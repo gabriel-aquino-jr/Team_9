@@ -3,6 +3,7 @@ import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mockup/database/db_helper.dart';
+import '../../model/global.dart';
 // source: https://stackoverflow.com/questions/60027498/flutter-radio-value-not-changing-in-stepper
 /*
 void main() => runApp(MyApp());
@@ -48,6 +49,11 @@ class _AppointmentCityState extends State<AppointmentCity> {
     for (var row in allCities) {
       _cities.add(row['location'].toString());
     }
+    (AppointmentInfo.city == "")
+        ? selectedIndex = -1
+        : selectedIndex =
+            _cities.indexWhere((element) => element == AppointmentInfo.city);
+
     setState(() {});
     allCities.forEach(print);
   }
@@ -73,6 +79,7 @@ class _AppointmentCityState extends State<AppointmentCity> {
             onTap: () {
               setState(() {
                 selectedIndex = index;
+                AppointmentInfo.city = _cities[index];
               });
             },
           ),

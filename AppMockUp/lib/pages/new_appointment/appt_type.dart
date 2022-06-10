@@ -33,12 +33,20 @@ class AppointmentType extends StatefulWidget {
 enum ApptType { written, road }
 
 class _AppointmentTypeState extends State<AppointmentType> {
-  ApptType? _character;
-  String type = "";
+  ApptType? _character = ApptType.written;
 
-  getValueFromtxt() {
+  String getTextFromValue() {
+    String type = "";
     (_character == ApptType.written) ? type = "Written" : type = "Road";
-    AppointmentInfo.type = type;
+    return type;
+  }
+
+  ApptType getValueFromtxt() {
+    ApptType type;
+    (AppointmentInfo.type == "Written")
+        ? type = ApptType.written
+        : type = ApptType.road;
+    return type;
   }
   // List<Step> get _steps => <Step>[_lastQualificationStep()];
   // int _currentStep = 0;
@@ -47,12 +55,15 @@ class _AppointmentTypeState extends State<AppointmentType> {
   @override
   void initState() {
     super.initState();
+    (AppointmentInfo.type == "")
+        ? _character = null
+        : _character = getValueFromtxt();
     //_steps.add(_lastQualificationStep());
   }
 
   @override
   void dispose() {
-    getValueFromtxt();
+    AppointmentInfo.type = getTextFromValue();
     super.dispose();
   }
 
