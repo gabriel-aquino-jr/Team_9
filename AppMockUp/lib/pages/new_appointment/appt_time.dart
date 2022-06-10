@@ -3,7 +3,6 @@ import 'package:mockup/components/calendar.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
 import 'package:mockup/model/schedule_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/global.dart';
 
 class AppointmentTime extends StatefulWidget {

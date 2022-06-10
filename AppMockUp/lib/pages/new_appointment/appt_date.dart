@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/calendar.dart';
 import 'package:mockup/components/textbox.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AppointmentDate extends StatelessWidget {
   const AppointmentDate({Key? key}) : super(key: key);

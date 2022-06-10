@@ -3,6 +3,8 @@ class AppointmentInfo {
   static String city = "";
   static String date = "";
   static String time = "";
+  static String customerId = "";
+  static String customerName = "";
 }
 
  // final String city;

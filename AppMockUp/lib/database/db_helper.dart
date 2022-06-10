@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mockup/model/customer_model.dart';
+import 'package:mockup/model/global.dart';
 import 'package:mockup/model/schedule_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import '../../model/global.dart';
 
 class DBHelper {
   static const _dbName = 'snbDriveDB.db';
@@ -107,9 +109,13 @@ class DBHelper {
     Database db = await instance.database;
     String emailText = email.text;
     String passwordText = password.text;
-    final loginFound = await db.rawQuery('''SELECT * FROM customers
-        where email = '$emailText' and password = '$passwordText' ''');
+    final loginFound = await db.rawQuery('''SELECT customerId, fullName FROM 
+      customers where email = '$emailText' and password = '$passwordText' ''');
     debugPrint('login records matched: {$loginFound.length}');
+    if (loginFound.length == 1) {
+      AppointmentInfo.customerId = loginFound[0]['customerId'].toString();
+      AppointmentInfo.customerName = loginFound[0]['fullName'].toString();
+    }
     return (loginFound.isNotEmpty);
   }
 

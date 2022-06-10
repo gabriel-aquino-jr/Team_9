@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/nav_button.dart';
 import 'package:mockup/components/textbox.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mockup/database/db_helper.dart';
 import '../../model/global.dart';
+import 'package:mockup/utilities/palette.dart';
 // source: https://stackoverflow.com/questions/60027498/flutter-radio-value-not-changing-in-stepper
 /*
 void main() => runApp(MyApp());
@@ -75,7 +75,7 @@ class _AppointmentCityState extends State<AppointmentCity> {
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
             title: Text(_cities[index]),
-            tileColor: selectedIndex == index ? Colors.blue : null,
+            tileColor: selectedIndex == index ? Palette.medGreen : null,
             onTap: () {
               setState(() {
                 selectedIndex = index;

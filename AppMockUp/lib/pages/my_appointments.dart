@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mockup/components/nav_button.dart';
 //import 'package:collection/collection.dart';
 import 'package:mockup/components/page_header.dart';
+import 'package:mockup/components/textbox.dart';
 //import 'package:mockup/components/textbox.dart';
 import 'package:mockup/database/db_helper.dart';
 import 'package:mockup/model/myappointment_model.dart';
 import 'package:mockup/pages/new_appointment.dart';
 import 'package:mockup/pages/view_Appointment.dart';
 import 'package:mockup/utilities/palette.dart';
+import '../../model/global.dart';
 
 /*
 void main() {
@@ -55,6 +57,18 @@ class _MyAppointmentsState extends State<MyAppointments> {
         itemBuilder: (context, index) {
           return Column(
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FancyText(
+                      ftext: 'Welcome, ${AppointmentInfo.customerName}!',
+                      style: Style.header,
+                    ),
+                  ),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
