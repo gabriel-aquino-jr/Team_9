@@ -176,27 +176,27 @@ class DBHelper {
               '2022-06-09',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),            (
               1654803407813921,
               '2022-06-10',
               '08:30:00',
               'Road',
-              'Moncton'
+              'Edmundston'
             ),
             (
               1654803407814015,
               '2022-06-10',
               '10:30:00',
               'Road',
-              'Moncton'
+              'Bathurst'
             ),
             (
               1654803407814359,
               '2022-06-10',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),            (
               1654803407814443,
               '2022-06-11',
@@ -209,20 +209,20 @@ class DBHelper {
               '2022-06-11',
               '10:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),
             (
               1654803407814502,
               '2022-06-11',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),            (
               1654803407814551,
               '2022-06-12',
               '08:30:00',
               'Road',
-              'Moncton'
+              'Bathurst'
             ),
             (
               1654803407814582,
@@ -262,14 +262,14 @@ class DBHelper {
               '2022-06-14',
               '08:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),
             (
               1654803407814769,
               '2022-06-14',
               '10:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),
             (
               1654803407814790,
@@ -289,14 +289,14 @@ class DBHelper {
               '2022-06-15',
               '10:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),
             (
               1654803407814888,
               '2022-06-15',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Bathurst'
             ),            (
               1654803407814947,
               '2022-06-16',
@@ -309,14 +309,14 @@ class DBHelper {
               '2022-06-16',
               '10:30:00',
               'Road',
-              'Moncton'
+              'Woodstock'
             ),
             (
               1654803407815048,
               '2022-06-16',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Edmundston'
             ),            (
               1654803407815860,
               '2022-06-17',
@@ -356,7 +356,7 @@ class DBHelper {
               '2022-06-18',
               '13:30:00',
               'Road',
-              'Moncton'
+              'Edmundston'
             )
         ''';
 
@@ -483,6 +483,24 @@ class DBHelper {
         SELECT
           distinct location
         FROM schedules
+        ''');
+    return resultSet;
+  }
+
+  // Query cities with schedules available
+  Future<List<Map<String, dynamic>>> queryDatesAvailable(
+      String type, String city) async {
+    Database db = await instance.database;
+    final resultSet = await db.rawQuery('''
+        SELECT
+          *
+        FROM schedules
+        LEFT OUTER JOIN Appointments
+          ON schedules.ScheduleID = Appointments.ScheduleID
+        WHERE 
+          Appointments.ScheduleID is null AND 
+          Type = '${type}' AND
+          Location = '${city}'
         ''');
     return resultSet;
   }
