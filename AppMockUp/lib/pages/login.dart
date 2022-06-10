@@ -182,7 +182,7 @@ class _LoginDemoState extends State<LoginDemo> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  dbhelper.insertSampleCustomer();
+                  dbhelper.insertSampleData();
                   _queryAllEvents();
                 },
                 child: const Text("Insert Dummy Data")),

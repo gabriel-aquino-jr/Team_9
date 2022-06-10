@@ -1,4 +1,4 @@
-import 'dart:html';
+//import 'dart:html';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mockup/model/customer_model.dart';
@@ -120,7 +120,7 @@ class DBHelper {
     return (loginFound.isNotEmpty);
   }
 
-  Future<void> insertSampleCustomer() async {
+  Future<void> insertSampleData() async {
     Database db = await instance.database;
     db.rawDelete('DELETE FROM appointments');
     db.rawDelete('DELETE FROM schedules');
@@ -498,8 +498,8 @@ class DBHelper {
             )
             VALUES
             (
-              ${customerId.text},
-              ${scheduleId.text}            
+              ${customerId},
+              ${scheduleId}            
             )
     ''');
   }
@@ -510,13 +510,14 @@ class DBHelper {
     Database db = await instance.database;
     final resultSet = await db.rawQuery('''
         SELECT
-          TOP 1 scheduleID
+          scheduleID
         FROM Schedules
         WHERE 
           date = '${date}' AND
           time = '${time}' AND
           type = '${type}' AND
-          location = '${location}
+          location = '${location}'
+        LIMIT 1         
         ''');
     return resultSet;
   }

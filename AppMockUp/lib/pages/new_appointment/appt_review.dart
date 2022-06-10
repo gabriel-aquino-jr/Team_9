@@ -17,21 +17,27 @@ class AppointmentReview extends StatefulWidget {
 class _AppointmentReviewState extends State<AppointmentReview> {
   int scheduleId = 0;
 
-  void _queryDatabase() {
-    _queryGetScheduleID();
-    _queryInsertAppointment();
+  Future<void> _queryDatabase() async {
+    await _queryGetScheduleID();
+    await _queryInsertAppointment();
+    Navigator.pushNamed(context, AppointmentConfirmed.route);
   }
 
-  void _queryGetScheduleID() async {
+  Future<void> _queryGetScheduleID() async {
     dbhelper.database;
-    List scheduleQuery;
-    scheduleQuery = await dbhelper.queryGetScheduleID(AppointmentInfo.date,
+    final allRows = await dbhelper.queryGetScheduleID(AppointmentInfo.date,
         AppointmentInfo.time, AppointmentInfo.type, AppointmentInfo.city);
-    scheduleId = scheduleQuery[0][0];
+    //List scheduleQuery;
+    // scheduleQuery = await dbhelper.queryGetScheduleID(AppointmentInfo.date,
+    //     AppointmentInfo.time, AppointmentInfo.type, AppointmentInfo.city);
+
+    for (var row in allRows) {
+      scheduleId = int.parse(row['scheduleId'].toString());
+    }
     setState(() {});
   }
 
-  void _queryInsertAppointment() async {
+  Future<void> _queryInsertAppointment() async {
     dbhelper.database;
     await dbhelper.insertAppointment(AppointmentInfo.customerId, scheduleId);
     setState(() {});
