@@ -1,18 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:mockup/components/page_header.dart';
+import 'package:mockup/model/global.dart';
 import 'package:mockup/pages/my_appointments.dart';
 import 'package:mockup/components/textbox.dart';
 
 import '../../components/nav_button.dart';
 
-class AppointmentConfirmed extends StatelessWidget {
+class AppointmentConfirmed extends StatefulWidget {
   const AppointmentConfirmed({Key? key}) : super(key: key);
   static String route = 'appt_confirmed';
 
   @override
+  State<AppointmentConfirmed> createState() => _AppointmentConfirmedState();
+}
+
+class _AppointmentConfirmedState extends State<AppointmentConfirmed> {
+  @override
+  void dispose() {
+    super.dispose();
+    AppointmentInfo.city = "";
+    AppointmentInfo.date = "";
+    AppointmentInfo.time = "";
+    AppointmentInfo.type = "";
+  }
+
+  @override
   Widget build(BuildContext context) {
     return PageHeader(
-      title: "Your Road Test",
+      title: "Appointment Confirmed!",
       body: Center(
         child: Column(
           children: [
@@ -21,8 +36,10 @@ class AppointmentConfirmed extends StatelessWidget {
             ),
             SizedBox(
               width: 300,
-              child: const FancyText(
-                  ftext: 'Your Appointment is confirmed!', style: Style.header),
+              child: FancyText(
+                  ftext:
+                      '${AppointmentInfo.customerName}, your appointment is confirmed!',
+                  style: Style.header),
             ),
             const SizedBox(
               height: 20,
@@ -31,11 +48,15 @@ class AppointmentConfirmed extends StatelessWidget {
               direction: Axis.vertical,
               spacing: 20,
               children: [
-                const FancyText(ftext: 'Test Type: Written', style: Style.base),
-                const FancyText(ftext: 'City: Sackville', style: Style.base),
-                const FancyText(
-                    ftext: 'Date: June 03, 2022', style: Style.base),
-                const FancyText(ftext: 'Time: 01:30PM', style: Style.base),
+                FancyText(
+                    ftext: 'Test Type: ${AppointmentInfo.type}',
+                    style: Style.base),
+                FancyText(
+                    ftext: 'City: ${AppointmentInfo.city}', style: Style.base),
+                FancyText(
+                    ftext: 'Date: ${AppointmentInfo.date}', style: Style.base),
+                FancyText(
+                    ftext: 'Time: ${AppointmentInfo.time}', style: Style.base),
               ],
             ),
             const SizedBox(
