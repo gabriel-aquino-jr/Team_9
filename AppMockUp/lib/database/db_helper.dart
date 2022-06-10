@@ -142,6 +142,21 @@ class DBHelper {
             )
     ''');
 
+    await db.rawInsert('''INSERT INTO customers 
+            (
+            customerID,          
+            fullName,
+            email,
+            password
+            )
+            VALUES
+            (
+              2,
+              'Meg Ryan',
+            'mryan@ca.ca',
+            '123'
+            )
+    ''');
     //
     // In Order to parse times we must use ISO Format "2012-02-27 13:27:00"
     //
@@ -417,6 +432,54 @@ class DBHelper {
               1654803407816164
             )
     ''');
+    await db.rawInsert('''INSERT INTO appointments 
+            (
+            customerID,
+            scheduleID
+            )
+            VALUES
+            (
+              1,
+              1654803407813655
+            )
+    ''');
+
+    await db.rawInsert('''INSERT INTO appointments 
+            (
+            customerID,
+            scheduleID
+            )
+            VALUES
+            (
+              1,
+              1654803407815915
+            )
+    ''');
+
+    await db.rawInsert('''INSERT INTO appointments 
+            (
+            customerID,
+            scheduleID
+            )
+            VALUES
+            (
+              2,
+              1654803407814502
+            )
+    ''');
+
+    await db.rawInsert('''INSERT INTO appointments 
+            (
+            customerID,
+            scheduleID
+            )
+            VALUES
+            (
+              2,
+              1654803407816089
+            )
+    ''');
+
     print(lastrowAppt);
   }
 

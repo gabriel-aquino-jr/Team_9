@@ -32,7 +32,8 @@ class _MyAppointmentsState extends State<MyAppointments> {
 
   void _queryMyAppointments() async {
     dbHelper.database;
-    final allRows = await dbHelper.queryMyAppointments(1);
+    final allRows =
+        await dbHelper.queryMyAppointments(AppointmentInfo.customerId);
     debugPrint('query appointments from customer');
     _appointments.clear(); // clearing employees left over
     for (var row in allRows) {
@@ -52,57 +53,66 @@ class _MyAppointmentsState extends State<MyAppointments> {
   Widget build(BuildContext context) {
     return PageHeader(
       title: 'Your Appointments',
-      body: ListView.builder(
-        itemCount: _appointments.length,
-        itemBuilder: (context, index) {
-          return Column(
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: FancyText(
-                      ftext: 'Welcome, ${AppointmentInfo.customerName}!',
-                      style: Style.header,
-                    ),
-                  ),
-                ],
-              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    debugPrint('Card #$index was tapped');
-                  },
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text('${_appointments[index].date}'),
-                          Text('- ${_appointments[index].time}'),
-                          Text('- ${_appointments[index].type}'),
-                          Text('- ${_appointments[index].location}'),
-                          const Spacer(),
-                          IconButton(
-                            icon: const Icon(Icons.details_outlined),
-                            color: Colors.blue,
-                            onPressed: () {
-                              debugPrint('go to the appointment details');
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                child: FancyText(
+                  ftext: 'Welcome, ${AppointmentInfo.customerName}!',
+                  style: Style.header,
                 ),
               ),
-              NavBtn(label: 'New', route: NewAppointment.route),
             ],
-          );
-        },
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _appointments.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          debugPrint('Card #$index was tapped');
+                        },
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text('${_appointments[index].date}'),
+                                Text('- ${_appointments[index].time}'),
+                                Text('- ${_appointments[index].type}'),
+                                Text('- ${_appointments[index].location}'),
+                                const Spacer(),
+                                IconButton(
+                                  icon: const Icon(Icons.details_outlined),
+                                  color: Colors.blue,
+                                  onPressed: () {
+                                    debugPrint('go to the appointment details');
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+          NavBtn(label: 'New', route: NewAppointment.route),
+          SizedBox(
+            height: 20,
+          ),
+        ],
       ),
       // body: Padding(
       //   padding: const EdgeInsets.all(10.0),
