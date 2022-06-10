@@ -129,7 +129,6 @@ class _CalendarState extends State<Calendar> {
   @override
   void dispose() {
     _selectedEvents.dispose();
-    AppointmentInfo.date = _selectedDay.toString().substring(0, 10);
     super.dispose();
   }
 
@@ -167,8 +166,8 @@ class _CalendarState extends State<Calendar> {
               setState(() {
                 _selectedDay = selectedDay;
                 _focusedDay = focusedDay;
-
                 _selectedEvents.value = _getEventsForDay(selectedDay);
+                AppointmentInfo.date = _selectedDay.toString().substring(0, 10);
               });
             }
           },

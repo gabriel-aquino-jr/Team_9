@@ -92,7 +92,6 @@ class _AppointmentTimeState extends State<AppointmentTime> {
 
   @override
   void dispose() {
-    AppointmentInfo.time = GetTxtFromTimeAvailable();
     super.dispose();
   }
 
@@ -126,6 +125,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
               onChanged: (TimeAvailable? value) {
                 setState(() {
                   _character = value;
+                  AppointmentInfo.time = GetTxtFromTimeAvailable();
                 });
               },
             ),
@@ -141,6 +141,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
               onChanged: (TimeAvailable? value) {
                 setState(() {
                   _character = value;
+                  AppointmentInfo.time = GetTxtFromTimeAvailable();
                 });
               },
             ),
@@ -156,6 +157,7 @@ class _AppointmentTimeState extends State<AppointmentTime> {
               onChanged: (TimeAvailable? value) {
                 setState(() {
                   _character = value;
+                  AppointmentInfo.time = GetTxtFromTimeAvailable();
                 });
               },
             ),
